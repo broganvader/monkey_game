@@ -1,0 +1,62 @@
+using Sandbox;
+
+public sealed class Cannon : Component, Component.IPressable
+{
+    [Property] public float Recoil_Force { get; set; } = 500000f;
+	[Property] public float Projectile_Force { get; set; } = 500000f;
+
+
+	[Property] GameObject projectile {get;set;}
+	[Property] GameObject spawner {get;set;}
+	
+	TimeSince last_shot = 0;
+    private PlayerController cannon_operator;
+	
+	// GameObject parent_object = GameObject.Parent;
+
+	protected override void OnUpdate()
+	{	
+		Rotation currentRotation = WorldRotation;
+		Rigidbody body = Components.Get<Rigidbody>();
+
+        if (cannon_operator == null){
+            return;
+        }
+
+		if (Input.Down( "Attack1") && last_shot > 0.5f ){
+			GameObject instance = projectile.Clone(spawner.WorldPosition);
+			var projectile_body = instance.GetComponent<Rigidbody>();
+			if( projectile_body.IsValid() ){
+				projectile_body.ApplyForce(WorldRotation.Forward * Projectile_Force);
+			}
+			// body.ApplyForceAt(spawner.WorldPosition, WorldRotation.Backward * Recoil_Force);
+			last_shot = 0;
+		}
+
+	}
+
+	public bool Press( IPressable.Event e) {
+        if ( e.Source is PlayerController player ) {
+            if ( cannon_operator != null ) {   // exit operator seat
+                player.Body.Enabled = true;
+                player.ColliderObject.Enabled = true;
+                player.UseAnimatorControls = true;
+
+                cannon_operator.GameObject.SetParent( null );
+                cannon_operator = null;
+                return true;
+            }
+            //player.UseInputControls = false;
+            player.Body.Enabled = false;
+            player.ColliderObject.Enabled = false;
+            player.UseAnimatorControls = false;
+
+            player.Renderer.Set("sit",4);
+            player.GameObject.SetParent( GameObject );
+            player.LocalPosition = Vector3.Up * 5;
+
+            cannon_operator = player;
+        }
+        return true;
+    }
+}
