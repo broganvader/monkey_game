@@ -4,6 +4,7 @@ public sealed class Cannon : Component, Component.IPressable
 {
     [Property] public float Recoil_Force { get; set; } = 500000f;
 	[Property] public float Projectile_Force { get; set; } = 500000f;
+	[Property] public float Cooldown { get; set; } = 0.5f;
 
 
 	[Property] GameObject projectile {get;set;}
@@ -12,25 +13,31 @@ public sealed class Cannon : Component, Component.IPressable
 	TimeSince last_shot = 0;
     private PlayerController cannon_operator;
 	
-	// GameObject parent_object = GameObject.Parent;
+	// GameObject parent_object = Parent;
 
 	protected override void OnUpdate()
 	{	
 		Rotation currentRotation = WorldRotation;
-		Rigidbody body = Components.Get<Rigidbody>();
+		Rigidbody body = Components.GetInAncestorsOrSelf<Rigidbody>();
+        // Log.Info( $"Cannon_Operator: {cannon_operator}" );
 
         if (cannon_operator == null){
             return;
         }
 
-		if (Input.Down( "Attack1") && last_shot > 0.5f ){
+		if (Input.Down( "Attack1") && last_shot > Cooldown ){
+            Log.Info( $"Cannon_Operator: {cannon_operator}" );
 			GameObject instance = projectile.Clone(spawner.WorldPosition);
 			var projectile_body = instance.GetComponent<Rigidbody>();
 			if( projectile_body.IsValid() ){
 				projectile_body.ApplyForce(WorldRotation.Forward * Projectile_Force);
 			}
-			// body.ApplyForceAt(spawner.WorldPosition, WorldRotation.Backward * Recoil_Force);
-			last_shot = 0;
+            last_shot = 0;
+
+            Log.Info( $"body: {body}" );
+            Log.Info( $"spawner: {spawner}" );
+			body.ApplyImpulseAt(spawner.WorldPosition, WorldRotation.Backward * Recoil_Force);
+
 		}
 
 	}

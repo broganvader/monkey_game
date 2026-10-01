@@ -3,10 +3,10 @@
     "__guid": "96f3640f-c0d3-4f6e-a148-bec7ee8f58a8",
     "__version": 2,
     "Flags": 0,
-    "Name": "Cannon Ball",
+    "Name": "cannon ball",
     "Position": "0,0,0",
     "Rotation": "0,0,0,1",
-    "Scale": "0.200000003,0.200000003,0.200000003",
+    "Scale": "0.600000024,0.600000024,0.600000024",
     "Tags": "",
     "Enabled": true,
     "NetworkMode": 2,
@@ -102,9 +102,43 @@
         "Static": false,
         "Surface": null,
         "SurfaceVelocity": "0,0,0"
+      },
+      {
+        "__type": "Cannonball",
+        "__guid": "085285aa-4f50-4e3a-b1a4-2732b5fe742a",
+        "__enabled": true,
+        "Flags": 0,
+        "OnComponentDestroy": null,
+        "OnComponentDisabled": null,
+        "OnComponentEnabled": null,
+        "OnComponentFixedUpdate": null,
+        "OnComponentStart": null,
+        "OnComponentUpdate": null
       }
     ],
-    "Children": []
+    "Children": [],
+    "__properties": {
+      "NetworkInterpolation": true,
+      "PhysicsMode": "Physics3D",
+      "TimeScale": 1,
+      "WantsSystemScene": true,
+      "Metadata": {},
+      "NavMesh": {
+        "Enabled": false,
+        "IncludeStaticBodies": true,
+        "IncludeKeyframedBodies": true,
+        "EditorAutoUpdate": false,
+        "AgentHeight": 64,
+        "AgentRadius": 16,
+        "AgentStepSize": 18,
+        "AgentMaxSlope": 40,
+        "ExcludedBodies": "",
+        "IncludedBodies": "",
+        "DeferGeneration": false,
+        "CustomBounds": false
+      }
+    },
+    "__variables": []
   },
   "ResourceVersion": 2,
   "ShowInMenu": false,

@@ -742,120 +742,40 @@
         {
           "__guid": "1d164d30-0af1-4b34-b9cc-5dc2f5d0d531",
           "__version": 2,
-          "Flags": 0,
-          "Name": "Weapon 1",
-          "Position": "-9.1787262,-345.182861,18.8808289",
-          "Rotation": "0,0,-0.707106769,0.707106769",
-          "Scale": "1,1,1",
-          "Tags": "",
-          "Enabled": true,
-          "NetworkMode": 2,
-          "NetworkFlags": 0,
-          "NetworkOrphaned": 0,
-          "NetworkTransmit": true,
-          "OwnerTransfer": 1,
-          "Components": [
-            {
-              "__type": "Sandbox.ModelRenderer",
-              "__guid": "01c91adf-4911-449f-aa02-3314b09fd2ce",
-              "__enabled": true,
-              "Flags": 0,
-              "BodyGroups": 18446744073709551615,
-              "CreateAttachments": false,
-              "LodOverride": null,
-              "MaterialGroup": null,
-              "MaterialOverride": null,
-              "Materials": null,
-              "Model": {
-                "Id": "3b2f46b4-d48a-4c77-9b8d-828412e5ef05",
-                "Path": "models/reizer_props/srsp/random_stuff/pirate_cannon_01/01/pirate_cannon_01.vmdl"
+          "__Prefab": {
+            "Id": "4257b5c2-a4e6-4ed5-b573-396f6e6f2178",
+            "Path": "weapon_cannon.prefab"
+          },
+          "__PrefabInstancePatch": {
+            "AddedObjects": [],
+            "RemovedObjects": [],
+            "PropertyOverrides": [
+              {
+                "Target": {
+                  "Type": "GameObject",
+                  "IdValue": "8cd889d8-c783-40c6-b621-3154f367b050"
+                },
+                "Property": "Name",
+                "Value": "Weapon_Cannon"
               },
-              "OnComponentDestroy": null,
-              "OnComponentDisabled": null,
-              "OnComponentEnabled": null,
-              "OnComponentFixedUpdate": null,
-              "OnComponentStart": null,
-              "OnComponentUpdate": null,
-              "RenderOptions": {
-                "GameLayer": true,
-                "OverlayLayer": false,
-                "BloomLayer": false,
-                "AfterUILayer": false
-              },
-              "RenderType": "On",
-              "Tint": "1,1,1,1"
-            },
-            {
-              "__type": "Sandbox.ModelCollider",
-              "__guid": "100c919f-4116-439b-9563-754ee56e2d1b",
-              "__enabled": true,
-              "Flags": 0,
-              "ColliderFlags": 0,
-              "Elasticity": null,
-              "Friction": null,
-              "IsTrigger": false,
-              "Model": {
-                "Id": "3b2f46b4-d48a-4c77-9b8d-828412e5ef05",
-                "Path": "models/reizer_props/srsp/random_stuff/pirate_cannon_01/01/pirate_cannon_01.vmdl"
-              },
-              "OnComponentDestroy": null,
-              "OnComponentDisabled": null,
-              "OnComponentEnabled": null,
-              "OnComponentFixedUpdate": null,
-              "OnComponentStart": null,
-              "OnComponentUpdate": null,
-              "OnObjectTriggerEnter": null,
-              "OnObjectTriggerExit": null,
-              "OnTriggerEnter": null,
-              "OnTriggerExit": null,
-              "RollingResistance": null,
-              "Static": false,
-              "Surface": null,
-              "SurfaceVelocity": "0,0,0"
-            },
-            {
-              "__type": "Cannon",
-              "__guid": "da548085-98cd-4097-84c2-78dd1947dce7",
-              "__enabled": true,
-              "Flags": 0,
-              "OnComponentDestroy": null,
-              "OnComponentDisabled": null,
-              "OnComponentEnabled": null,
-              "OnComponentFixedUpdate": null,
-              "OnComponentStart": null,
-              "OnComponentUpdate": null,
-              "projectile": {
-                "_type": "gameobject",
-                "prefab": "cannon ball.prefab"
-              },
-              "Projectile_Force": 5000000,
-              "Recoil_Force": 500000,
-              "spawner": {
-                "_type": "gameobject",
-                "go": "6aa3c44e-7e19-4c6d-8269-6d8dbb82e274"
+              {
+                "Target": {
+                  "Type": "GameObject",
+                  "IdValue": "8cd889d8-c783-40c6-b621-3154f367b050"
+                },
+                "Property": "Position",
+                "Value": "-9.1787262,-345.182861,18.8808289"
               }
-            }
-          ],
-          "Children": [
-            {
-              "__guid": "6aa3c44e-7e19-4c6d-8269-6d8dbb82e274",
-              "__version": 2,
-              "Flags": 0,
-              "Name": "spawner",
-              "Position": "92.0405426,0,42.1611252",
-              "Rotation": "0,0,0,1",
-              "Scale": "1,1,1",
-              "Tags": "",
-              "Enabled": true,
-              "NetworkMode": 2,
-              "NetworkFlags": 0,
-              "NetworkOrphaned": 0,
-              "NetworkTransmit": true,
-              "OwnerTransfer": 1,
-              "Components": [],
-              "Children": []
-            }
-          ]
+            ],
+            "MovedObjects": []
+          },
+          "__PrefabIdToInstanceId": {
+            "8cd889d8-c783-40c6-b621-3154f367b050": "1d164d30-0af1-4b34-b9cc-5dc2f5d0d531",
+            "d6d86a86-3456-4138-994b-33bf2b9b59b7": "6aa3c44e-7e19-4c6d-8269-6d8dbb82e274",
+            "f69ec9c2-e945-48d4-a5f3-34e4e8871471": "01c91adf-4911-449f-aa02-3314b09fd2ce",
+            "4dbd0427-1ead-47be-9d46-80185e9f7cb9": "100c919f-4116-439b-9563-754ee56e2d1b",
+            "27a035fa-9445-43c7-b84e-b02f37b03353": "da548085-98cd-4097-84c2-78dd1947dce7"
+          }
         },
         {
           "__guid": "95027f84-cb91-4767-88fe-7748f6cb3c27",
@@ -885,7 +805,7 @@
               "MaterialOverride": null,
               "Materials": null,
               "Model": {
-                "Id": "383b39f0-871d-4074-ad36-bf929b1d6cf5",
+                "Id": "a3ed3b96-ecdc-4288-a329-0bda40776b1f",
                 "Path": "materials/ac130/ac130.vmdl"
               },
               "OnComponentDestroy": null,
@@ -913,7 +833,7 @@
               "Friction": 0.22222222,
               "IsTrigger": false,
               "Model": {
-                "Id": "383b39f0-871d-4074-ad36-bf929b1d6cf5",
+                "Id": "a3ed3b96-ecdc-4288-a329-0bda40776b1f",
                 "Path": "materials/ac130/ac130.vmdl"
               },
               "OnComponentDestroy": null,
@@ -1705,6 +1625,99 @@
               "Children": []
             }
           ]
+        },
+        {
+          "__guid": "215e7360-91e4-4bc2-bbbf-d7c77e57e7a3",
+          "__version": 2,
+          "Flags": 0,
+          "Name": "Weapon_2_Location",
+          "Position": "-14.8048859,330.167389,22.5945129",
+          "Rotation": "0,0,0.707106769,0.707106769",
+          "Scale": "1,1,1",
+          "Tags": "",
+          "Enabled": true,
+          "NetworkMode": 2,
+          "NetworkFlags": 0,
+          "NetworkOrphaned": 0,
+          "NetworkTransmit": true,
+          "OwnerTransfer": 1,
+          "Components": [
+            {
+              "__type": "WeaponLocation",
+              "__guid": "8240382d-57d9-4bdc-a09a-b5c7bb82465f",
+              "__enabled": true,
+              "Flags": 0,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "weapon": {
+                "_type": "gameobject",
+                "prefab": "weapon_cannon.prefab"
+              }
+            },
+            {
+              "__type": "Sandbox.ModelRenderer",
+              "__guid": "aa7f7f5e-95c1-4061-9fb7-aa5bcbd2585c",
+              "__enabled": true,
+              "Flags": 0,
+              "BodyGroups": 18446744073709551615,
+              "CreateAttachments": false,
+              "LodOverride": null,
+              "MaterialGroup": null,
+              "MaterialOverride": null,
+              "Materials": null,
+              "Model": {
+                "Id": "18c5ca4c-276f-41b8-b357-1c580421e9fa",
+                "Path": "models/sbox_props/bathtub_a/bathtub_a.vmdl"
+              },
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "RenderOptions": {
+                "GameLayer": true,
+                "OverlayLayer": false,
+                "BloomLayer": false,
+                "AfterUILayer": false
+              },
+              "RenderType": "On",
+              "Tint": "1,1,1,1"
+            },
+            {
+              "__type": "Sandbox.ModelCollider",
+              "__guid": "db25e0e5-ba83-47bc-a86a-fcece956d36d",
+              "__enabled": true,
+              "Flags": 0,
+              "ColliderFlags": 0,
+              "Elasticity": null,
+              "Friction": null,
+              "IsTrigger": false,
+              "Model": {
+                "Id": "18c5ca4c-276f-41b8-b357-1c580421e9fa",
+                "Path": "models/sbox_props/bathtub_a/bathtub_a.vmdl"
+              },
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "OnObjectTriggerEnter": null,
+              "OnObjectTriggerExit": null,
+              "OnTriggerEnter": null,
+              "OnTriggerExit": null,
+              "RollingResistance": null,
+              "Static": false,
+              "Surface": null,
+              "SurfaceVelocity": "0,0,0"
+            }
+          ],
+          "Children": []
         }
       ]
     },
@@ -1713,7 +1726,7 @@
       "__version": 2,
       "Flags": 32768,
       "Name": "Terrain",
-      "Position": "303.963806,323.708435,213.31543",
+      "Position": "303.963806,-7809.9585,-8019.10742",
       "Rotation": "0,0,0,1",
       "Scale": "1,1,1",
       "Tags": "",
@@ -1773,7 +1786,7 @@
                   "MipLodBias": 0,
                   "MaxAnisotropy": 8,
                   "BorderColor": "0,0,0,0",
-                  "Index": 11
+                  "Index": 1
                 }
               },
               "ResourceVersion": 3,
@@ -1832,8 +1845,7 @@
   "Description": null,
   "__references": [
     "andiq.ac130_hercules#12782",
-    "garry.wheel#10656",
-    "reizer.ship_cannon_01#20073"
+    "facepunch.bathtub#279774"
   ],
   "__version": 3
 }
