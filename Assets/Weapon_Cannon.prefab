@@ -1,0 +1,152 @@
+{
+  "RootObject": {
+    "__guid": "8cd889d8-c783-40c6-b621-3154f367b050",
+    "__version": 2,
+    "Flags": 0,
+    "Name": "weapon_cannon",
+    "Position": "0,0,0",
+    "Rotation": "0,0,-0.707106769,0.707106769",
+    "Scale": "1,1,1",
+    "Tags": "",
+    "Enabled": true,
+    "NetworkMode": 2,
+    "NetworkFlags": 0,
+    "NetworkOrphaned": 0,
+    "NetworkTransmit": true,
+    "OwnerTransfer": 1,
+    "Components": [
+      {
+        "__type": "Sandbox.ModelRenderer",
+        "__guid": "f69ec9c2-e945-48d4-a5f3-34e4e8871471",
+        "__enabled": true,
+        "Flags": 0,
+        "BodyGroups": 18446744073709551615,
+        "CreateAttachments": false,
+        "LodOverride": null,
+        "MaterialGroup": null,
+        "MaterialOverride": null,
+        "Materials": null,
+        "Model": {
+          "Id": "fc883fde-d0e3-4d50-bc93-88bb9fcd5a87",
+          "Path": "models/reizer_props/srsp/random_stuff/pirate_cannon_01/01/pirate_cannon_01.vmdl"
+        },
+        "OnComponentDestroy": null,
+        "OnComponentDisabled": null,
+        "OnComponentEnabled": null,
+        "OnComponentFixedUpdate": null,
+        "OnComponentStart": null,
+        "OnComponentUpdate": null,
+        "RenderOptions": {
+          "GameLayer": true,
+          "OverlayLayer": false,
+          "BloomLayer": false,
+          "AfterUILayer": false
+        },
+        "RenderType": "On",
+        "Tint": "1,1,1,1"
+      },
+      {
+        "__type": "Sandbox.ModelCollider",
+        "__guid": "4dbd0427-1ead-47be-9d46-80185e9f7cb9",
+        "__enabled": true,
+        "Flags": 0,
+        "ColliderFlags": 0,
+        "Elasticity": null,
+        "Friction": null,
+        "IsTrigger": false,
+        "Model": {
+          "Id": "fc883fde-d0e3-4d50-bc93-88bb9fcd5a87",
+          "Path": "models/reizer_props/srsp/random_stuff/pirate_cannon_01/01/pirate_cannon_01.vmdl"
+        },
+        "OnComponentDestroy": null,
+        "OnComponentDisabled": null,
+        "OnComponentEnabled": null,
+        "OnComponentFixedUpdate": null,
+        "OnComponentStart": null,
+        "OnComponentUpdate": null,
+        "OnObjectTriggerEnter": null,
+        "OnObjectTriggerExit": null,
+        "OnTriggerEnter": null,
+        "OnTriggerExit": null,
+        "RollingResistance": null,
+        "Static": false,
+        "Surface": null,
+        "SurfaceVelocity": "0,0,0"
+      },
+      {
+        "__type": "Cannon",
+        "__guid": "27a035fa-9445-43c7-b84e-b02f37b03353",
+        "__enabled": true,
+        "Flags": 0,
+        "Cooldown": 0.5,
+        "OnComponentDestroy": null,
+        "OnComponentDisabled": null,
+        "OnComponentEnabled": null,
+        "OnComponentFixedUpdate": null,
+        "OnComponentStart": null,
+        "OnComponentUpdate": null,
+        "projectile": {
+          "_type": "gameobject",
+          "prefab": "cannon ball.prefab"
+        },
+        "Projectile_Force": 50000000,
+        "Recoil_Force": 50000,
+        "spawner": {
+          "_type": "gameobject",
+          "go": "d6d86a86-3456-4138-994b-33bf2b9b59b7"
+        }
+      }
+    ],
+    "Children": [
+      {
+        "__guid": "d6d86a86-3456-4138-994b-33bf2b9b59b7",
+        "__version": 2,
+        "Flags": 0,
+        "Name": "spawner",
+        "Position": "115.51722,0,42.1611328",
+        "Rotation": "0,0,0,1",
+        "Scale": "1,1,1",
+        "Tags": "",
+        "Enabled": true,
+        "NetworkMode": 2,
+        "NetworkFlags": 0,
+        "NetworkOrphaned": 0,
+        "NetworkTransmit": true,
+        "OwnerTransfer": 1,
+        "Components": [],
+        "Children": []
+      }
+    ],
+    "__properties": {
+      "NetworkInterpolation": true,
+      "PhysicsMode": "Physics3D",
+      "TimeScale": 1,
+      "WantsSystemScene": true,
+      "Metadata": {},
+      "NavMesh": {
+        "Enabled": false,
+        "IncludeStaticBodies": true,
+        "IncludeKeyframedBodies": true,
+        "EditorAutoUpdate": false,
+        "AgentHeight": 64,
+        "AgentRadius": 16,
+        "AgentStepSize": 18,
+        "AgentMaxSlope": 40,
+        "ExcludedBodies": "",
+        "IncludedBodies": "",
+        "DeferGeneration": false,
+        "CustomBounds": false
+      }
+    },
+    "__variables": []
+  },
+  "ResourceVersion": 2,
+  "ShowInMenu": false,
+  "MenuPath": null,
+  "MenuIcon": null,
+  "DontBreakAsTemplate": false,
+  "__references": [
+    "reizer.ship_cannon_01#20073"
+  ],
+  "__version": 2
+}

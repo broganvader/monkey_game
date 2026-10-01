@@ -364,7 +364,7 @@
         {
           "__type": "Sandbox.Movement.MoveModeSwim",
           "__guid": "1987f92e-c99e-4d74-b065-9f88c6f77945",
-          "__enabled": true,
+          "__enabled": false,
           "Flags": 0,
           "OnComponentDestroy": null,
           "OnComponentDisabled": null,
@@ -378,7 +378,7 @@
         {
           "__type": "Sandbox.Movement.MoveModeLadder",
           "__guid": "9ca98ea4-55ee-4802-a84f-8e41b25bfb3e",
-          "__enabled": true,
+          "__enabled": false,
           "Flags": 0,
           "ClimbableTags": "ladder",
           "OnComponentDestroy": null,
@@ -487,7 +487,7 @@
                 "Looping": true,
                 "Blending": false
               },
-              "Tint": "1,1,1,1",
+              "Tint": "1,0,1,1",
               "UseAnimGraph": true
             }
           ],
@@ -738,44 +738,6 @@
             }
           ],
           "Children": []
-        },
-        {
-          "__guid": "1d164d30-0af1-4b34-b9cc-5dc2f5d0d531",
-          "__version": 2,
-          "__Prefab": {
-            "Id": "4257b5c2-a4e6-4ed5-b573-396f6e6f2178",
-            "Path": "weapon_cannon.prefab"
-          },
-          "__PrefabInstancePatch": {
-            "AddedObjects": [],
-            "RemovedObjects": [],
-            "PropertyOverrides": [
-              {
-                "Target": {
-                  "Type": "GameObject",
-                  "IdValue": "8cd889d8-c783-40c6-b621-3154f367b050"
-                },
-                "Property": "Name",
-                "Value": "Weapon_Cannon"
-              },
-              {
-                "Target": {
-                  "Type": "GameObject",
-                  "IdValue": "8cd889d8-c783-40c6-b621-3154f367b050"
-                },
-                "Property": "Position",
-                "Value": "-9.1787262,-345.182861,18.8808289"
-              }
-            ],
-            "MovedObjects": []
-          },
-          "__PrefabIdToInstanceId": {
-            "8cd889d8-c783-40c6-b621-3154f367b050": "1d164d30-0af1-4b34-b9cc-5dc2f5d0d531",
-            "d6d86a86-3456-4138-994b-33bf2b9b59b7": "6aa3c44e-7e19-4c6d-8269-6d8dbb82e274",
-            "f69ec9c2-e945-48d4-a5f3-34e4e8871471": "01c91adf-4911-449f-aa02-3314b09fd2ce",
-            "4dbd0427-1ead-47be-9d46-80185e9f7cb9": "100c919f-4116-439b-9563-754ee56e2d1b",
-            "27a035fa-9445-43c7-b84e-b02f37b03353": "da548085-98cd-4097-84c2-78dd1947dce7"
-          }
         },
         {
           "__guid": "95027f84-cb91-4767-88fe-7748f6cb3c27",
@@ -1632,7 +1594,7 @@
           "Flags": 0,
           "Name": "Weapon_2_Location",
           "Position": "-14.8048859,330.167389,22.5945129",
-          "Rotation": "0,0,0.707106769,0.707106769",
+          "Rotation": "0,0,0.99999994,0",
           "Scale": "1,1,1",
           "Tags": "",
           "Enabled": true,
@@ -1691,6 +1653,99 @@
             {
               "__type": "Sandbox.ModelCollider",
               "__guid": "db25e0e5-ba83-47bc-a86a-fcece956d36d",
+              "__enabled": true,
+              "Flags": 0,
+              "ColliderFlags": 0,
+              "Elasticity": null,
+              "Friction": null,
+              "IsTrigger": false,
+              "Model": {
+                "Id": "18c5ca4c-276f-41b8-b357-1c580421e9fa",
+                "Path": "models/sbox_props/bathtub_a/bathtub_a.vmdl"
+              },
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "OnObjectTriggerEnter": null,
+              "OnObjectTriggerExit": null,
+              "OnTriggerEnter": null,
+              "OnTriggerExit": null,
+              "RollingResistance": null,
+              "Static": false,
+              "Surface": null,
+              "SurfaceVelocity": "0,0,0"
+            }
+          ],
+          "Children": []
+        },
+        {
+          "__guid": "04bcac71-7eff-47bc-9855-985f2c7026e0",
+          "__version": 2,
+          "Flags": 0,
+          "Name": "Weapon_2_Location (1)",
+          "Position": "-15.8875122,-319.07666,17.8937988",
+          "Rotation": "0,0,-5.96046448E-08,-0.999999881",
+          "Scale": "1,1,1",
+          "Tags": "",
+          "Enabled": true,
+          "NetworkMode": 2,
+          "NetworkFlags": 0,
+          "NetworkOrphaned": 0,
+          "NetworkTransmit": true,
+          "OwnerTransfer": 1,
+          "Components": [
+            {
+              "__type": "WeaponLocation",
+              "__guid": "44992eca-55a8-4897-a977-e63d876dabfa",
+              "__enabled": true,
+              "Flags": 0,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "weapon": {
+                "_type": "gameobject",
+                "prefab": "weapon_cannon.prefab"
+              }
+            },
+            {
+              "__type": "Sandbox.ModelRenderer",
+              "__guid": "17c10a4a-5cfb-47b1-bb7f-f78e69956256",
+              "__enabled": true,
+              "Flags": 0,
+              "BodyGroups": 18446744073709551615,
+              "CreateAttachments": false,
+              "LodOverride": null,
+              "MaterialGroup": null,
+              "MaterialOverride": null,
+              "Materials": null,
+              "Model": {
+                "Id": "18c5ca4c-276f-41b8-b357-1c580421e9fa",
+                "Path": "models/sbox_props/bathtub_a/bathtub_a.vmdl"
+              },
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "RenderOptions": {
+                "GameLayer": true,
+                "OverlayLayer": false,
+                "BloomLayer": false,
+                "AfterUILayer": false
+              },
+              "RenderType": "On",
+              "Tint": "1,1,1,1"
+            },
+            {
+              "__type": "Sandbox.ModelCollider",
+              "__guid": "289161a9-80e8-471c-ad0b-073dc17f724d",
               "__enabled": true,
               "Flags": 0,
               "ColliderFlags": 0,
