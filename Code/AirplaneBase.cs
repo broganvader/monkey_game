@@ -1,22 +1,22 @@
 using Sandbox;
 using System;
 
-public sealed class MyComponent : Component, Component.IPressable
+public sealed class AirplaneBase : Component, Component.IPressable
 {
-    [Property] public float Thrust { get; set; } = 500000f;
-    [Property] public float Airbrake_Thrust { get; set; } = 500000f;
-    [Property] public float Pitch_Force { get; set; } = 5000000f;
+    [Property] public float Thrust { get; set; } = 100000f;
+    [Property] public float Airbrake_Thrust { get; set; } = 100000f;
+    [Property] public float Pitch_Force { get; set; } = 2000000f;
     [Property] public float Roll_Force { get; set; } = 5000000f;
-    [Property] public float Rotational_Drag_Force { get; set; } = 5000f;
+    [Property] public float Rotational_Drag_Force { get; set; } = 1000f;
     [Property] public float Drag_Force { get; set; } = 5000f;
 
 
     // [Property] public float Yaw_Force { get; set; } = 50000f; // only pitch and roll
-    [Property] public float max_speed {get; set; } = 35000f;
-    [Property] public float min_speed_thresh {get; set; } = 500f;
-    [Property] public float max_speed_thresh {get; set; } = 1000f;
-    [Property] public float Grarvity_Scale_Real {get; set; } = 0.2f;
-    [Property] public float lift_scale { get; set; } = 5000f;
+    [Property] public float max_speed {get; set; } = 3500f;
+    [Property] public float min_speed_thresh {get; set; } = 200f;
+    [Property] public float max_speed_thresh {get; set; } = 3500f;
+    // [Property] public float Grarvity_Scale_Real {get; set; } = 0.2f;
+    [Property] public float lift_scale { get; set; } = 2000f;
 
     [Property] public GameObject PilotSeat { get; set; }
 
@@ -53,9 +53,12 @@ public sealed class MyComponent : Component, Component.IPressable
         // Setting overlay: true renders it on top of geometry
         DebugOverlay.Line( startPos, endPos, Color, duration: 0f, overlay: true );
     }
-
+    Rigidbody body;
+    GameObject SpawnPointChild;
 	protected override void OnStart()
-	{
+    {
+        SpawnPointChild = GameObject.Children.FirstOrDefault( x => x.Name == "SpawnPoint" );
+        body = Components.Get<Rigidbody>();
         Tags.Add( "plane" );
         base.OnStart();
 	}
@@ -63,11 +66,6 @@ public sealed class MyComponent : Component, Component.IPressable
     protected override void OnFixedUpdate()
     {
 
-
-
-
-
-        Rigidbody body = Components.Get<Rigidbody>();
         update_catching_wind( body );
         Rotation currentRotation = WorldRotation;
 
@@ -111,7 +109,7 @@ public sealed class MyComponent : Component, Component.IPressable
             return;
         }
 
-        if ( Input.Down( "Use" ) && DismountCooldown >= 5f )
+        if ( Input.Down( "Use" ) && DismountCooldown >= 1f )
         {
             DismountSeat( pilot );
         }
@@ -189,8 +187,10 @@ public sealed class MyComponent : Component, Component.IPressable
         player.ColliderObject.Enabled = true;
         player.UseAnimatorControls = true;
 
+        pilot.LocalPosition = SpawnPointChild.LocalPosition;
         pilot.GameObject.SetParent( null );
         pilot = null;
+
     }
 
     public bool Press( IPressable.Event e) {

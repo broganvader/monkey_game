@@ -48,8 +48,8 @@ public sealed partial class PlanePlayerController : ICameraModifier
 		var rot = EyeTransform.Rotation;
 		var eyePosition = EyeTransform.Position;
 
-		if ( !IsAirborne && _eyez != 0 )
-			eyePosition.z = _eyez.LerpTo( eyePosition.z, Time.Delta * 50 );
+		// if ( !IsAirborne && _eyez != 0 )
+			// eyePosition.z = _eyez.LerpTo( eyePosition.z, Time.Delta * 50 );
 
 		_eyez = eyePosition.z;
 

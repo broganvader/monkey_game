@@ -1,6 +1,7 @@
 using Sandbox;
 using static Sandbox.ModelPhysics;
 using static Sandbox.VertexLayout;
+using System.Numerics;
 using System;
 using Sandbox.Movement;
 
@@ -11,19 +12,24 @@ public sealed class MoveModePlaneWalk : PlaneMoveModeWalk
 
 
 	Transform PrevPlaneTransform;
+	Rigidbody AirplaneBody;
 
 	protected override void OnStart()
 	{
+
+		AirplaneBody = Airplane.GetComponent<Rigidbody>();
 		// Controller.BodyCollisionTags.Add("player");
 		PrevPlaneTransform = Airplane.WorldTransform;
 		Tags.Add( "player" );
-		// Controller.RotationAngleLimit = 9999f;
+		Controller.RotationAngleLimit = 9999f;
 
 		Controller = Components.GetOrCreate<PlanePlayerController>();
 
-		Controller.RotationSpeed = 10f;
+		Controller.RotationSpeed = 1000f;
 
 		base.OnStart();
+
+
 	}
 
 	// taken straight from controller internal code
@@ -36,7 +42,6 @@ public sealed class MoveModePlaneWalk : PlaneMoveModeWalk
 	public override void AddVelocity()
 	{
 
-		Rigidbody AirplaneBody = Airplane.GetComponent<Rigidbody>();
 
 
 		var body = Controller.Body;
@@ -121,7 +126,10 @@ public sealed class MoveModePlaneWalk : PlaneMoveModeWalk
 
 	public override void ModifyCamera( ref CameraView view )
 	{
+		Vector3 Offset = PrevPlaneTransform.Position - Airplane.WorldPosition;
+
 		view.Rotation = view.Rotation * Rotation.Difference( Airplane.LocalRotation, Airplane.WorldRotation );
+		// view.Position += Offset;
 		base.ModifyCamera( ref view );
 	}
 
@@ -143,17 +151,35 @@ public sealed class MoveModePlaneWalk : PlaneMoveModeWalk
 		body.AngularDamping = 1f;
 	}
 
+	// public override void OnModeBegin()
+	// {
+	// }
 
-
+	float PerSecToPerTick = 1f / ProjectSettings.Physics.FixedUpdateFrequency;
+	Vector3 LastPlaneVelocity = Vector3.Zero;
 	public override void PrePhysicsStep()
 	{
 
-		Controller.BodyCollider.ColliderFlags = ColliderFlags.IgnoreMass;
+		Controller.UpDirection = Airplane.WorldRotation.Up;
+
+
+		// Controller.BodyCollider.ColliderFlags = ColliderFlags.IgnoreMass;
 		if ( !GameObject.Parent.Tags.Has( "sittable" ) )
 		{
 			Transform CurPlaneTransform = Airplane.WorldTransform;
 			Transform PlayerLocalTransform = PrevPlaneTransform.ToLocal( WorldTransform );
+
+			Vector3 PlaneVelocity = AirplaneBody.Velocity * PerSecToPerTick;
+			Vector3 PlaneAcceleration = PlaneVelocity - LastPlaneVelocity;// add this to player too, so they dnt slide back when plane accelerates
+																		  //make planeacceleration only forwards. Sideway accel doesn't rly matter, since always small and messes with forwards accel turning
+			PlaneAcceleration = PlaneAcceleration.ProjectOnNormal( Airplane.WorldRotation.Forward.Normal );
+
 			WorldTransform = CurPlaneTransform.ToWorld( PlayerLocalTransform );
+			
+			
+			WorldPosition += PlaneAcceleration;
+
+			LastPlaneVelocity = PlaneVelocity;
 
 			// Log.Info( $"Position change:  {PositionChange}" );
 
@@ -236,8 +262,13 @@ public sealed class MoveModePlaneWalk : PlaneMoveModeWalk
 	{
 		// var myupdatemove = base.base.UpdateMove(eyes, input);
 		// return myupdatemove;
-		Rotation RotDiff = Rotation.Difference( Airplane.WorldRotation, Airplane.LocalRotation );
+
+
+
+		// Rotation RotDiff = Rotation.Difference( Airplane.WorldRotation, Airplane.LocalRotation );
+		eyes = eyes.Angles() with { pitch = 0 };
 		eyes = Airplane.WorldRotation * eyes;
+		// 
 
 
 		return UpdateMoveBaseAltered( eyes, input );
@@ -248,11 +279,29 @@ public sealed class MoveModePlaneWalk : PlaneMoveModeWalk
 		// if ( Scene.Is2D )
 		// 	return;
 
-		Angles eyeAngles = Controller.EyeTransform.Rotation.Angles();
+		Vector3 up = Controller.UpDirection;
+		// Vector3 forward = Airplane.WorldRotation.Forward;
 
-		Rotation targetAngle = Rotation.FromYaw( eyeAngles.yaw ) * Airplane.WorldRotation;
+
+		Angles eyeAngles = Controller.EyeTransform.Rotation.Angles(); // 
+		Rotation eyeRotation = Controller.EyeTransform.Rotation;
+		
+		//remove up component
+		Vector3 eyeForward = eyeRotation.Forward;
+		// Vector3 Up = Airplane.WorldRotation.Up;
+
+		Vector3 flatEye = eyeForward - up * eyeForward.Dot(up);
+
+		// float flatEyeDegrees = flatEye.Angle( forward );
+
+		Rotation targetAngle = Rotation.LookAt( flatEye.Normal, up );
+
+
+
+		// Rotation targetAngle = eyeForward - // Rotation.FromYaw( eyeAngles.yaw );// * Airplane.WorldRotation;
 
 		// Rotation targetAngle = Controller.EyeTransform.Rotation.Angles();
+		
 		Vector3 velocity = Controller.WishVelocity.WithZ( 0 );
 
 		float rotateDifference = renderer.WorldRotation.Distance( targetAngle );
