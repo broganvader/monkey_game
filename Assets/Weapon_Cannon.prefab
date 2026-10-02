@@ -106,7 +106,7 @@
         "Position": "115.51722,0,42.1611328",
         "Rotation": "0,0,0,1",
         "Scale": "1,1,1",
-        "Tags": "",
+        "Tags": "sittable",
         "Enabled": true,
         "NetworkMode": 2,
         "NetworkFlags": 0,
