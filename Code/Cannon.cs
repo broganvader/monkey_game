@@ -14,7 +14,7 @@ public sealed class Cannon : Component, Component.IPressable
     private PlayerController cannon_operator;
 	
 	// GameObject parent_object = Parent;
-
+    
 	protected override void OnUpdate()
 	{	
 		Rotation currentRotation = WorldRotation;
