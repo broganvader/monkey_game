@@ -11,7 +11,7 @@ public sealed class Cannon : Component, Component.IPressable
 	[Property] GameObject spawner {get;set;}
 	
 	TimeSince last_shot = 0;
-    private PlayerController cannon_operator;
+    private PlanePlayerController cannon_operator;
 	
 	// GameObject parent_object = Parent;
     
@@ -43,7 +43,7 @@ public sealed class Cannon : Component, Component.IPressable
 	}
 
 	public bool Press( IPressable.Event e) {
-        if ( e.Source is PlayerController player ) {
+        if ( e.Source is PlanePlayerController player ) {
             if ( cannon_operator != null ) {   // exit operator seat
                 player.Body.Enabled = true;
                 player.ColliderObject.Enabled = true;

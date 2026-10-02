@@ -190,7 +190,7 @@ public sealed class MoveModePlaneWalk : PlaneMoveModeWalk
 		// don't normalize, because analog input might want to go slow
 		input = input.ClampLength( 1 );
 
-		var direction = eyes * input;
+		Vector3 direction = eyes * input;
 
 		// Run if we're holding down alt move button
 		bool run = Input.Down( Controller.AltMoveButton );
@@ -248,11 +248,11 @@ public sealed class MoveModePlaneWalk : PlaneMoveModeWalk
 		// if ( Scene.Is2D )
 		// 	return;
 
-		// Angles eyeAngles = Controller.EyeTransform.Rotation.Angles();
+		Angles eyeAngles = Controller.EyeTransform.Rotation.Angles();
 
-		// Rotation targetAngle = Rotation.FromYaw( eyeAngles.yaw ) * Airplane.WorldRotation;
+		Rotation targetAngle = Rotation.FromYaw( eyeAngles.yaw ) * Airplane.WorldRotation;
 
-		Rotation targetAngle = Controller.EyeTransform.Rotation.Angles();
+		// Rotation targetAngle = Controller.EyeTransform.Rotation.Angles();
 		Vector3 velocity = Controller.WishVelocity.WithZ( 0 );
 
 		float rotateDifference = renderer.WorldRotation.Distance( targetAngle );

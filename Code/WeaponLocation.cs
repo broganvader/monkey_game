@@ -11,7 +11,7 @@ public sealed class WeaponLocation : Component, Component.IPressable
 	}
 
 	public bool Press( IPressable.Event e) {
-        if ( e.Source is PlayerController player ) {
+        if ( e.Source is PlanePlayerController player ) {
 			Vector3 position = Vector3.Zero;//LocalPosition;
 			Rotation rotation = Rotation.Identity;//LocalRotation;
 			Vector3 scale = WorldScale;

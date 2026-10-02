@@ -20,7 +20,7 @@ public sealed class MyComponent : Component, Component.IPressable
 
     [Property] public GameObject PilotSeat { get; set; }
 
-    private PlayerController pilot;
+    private PlanePlayerController pilot;
     private float catching_wind; // 0-1, based on max speed
 
     TimeSince DismountCooldown = 0f;
@@ -169,7 +169,7 @@ public sealed class MyComponent : Component, Component.IPressable
 
 
 
-    private void MountSeat( PlayerController player )
+    private void MountSeat( PlanePlayerController player )
     {
         player.Body.Enabled = false;
         player.ColliderObject.Enabled = false;
@@ -183,7 +183,7 @@ public sealed class MyComponent : Component, Component.IPressable
 
     }
     
-    private void DismountSeat(PlayerController player )
+    private void DismountSeat(PlanePlayerController player )
     {
         player.Body.Enabled = true;
         player.ColliderObject.Enabled = true;
@@ -194,7 +194,7 @@ public sealed class MyComponent : Component, Component.IPressable
     }
 
     public bool Press( IPressable.Event e) {
-        if ( e.Source is PlayerController player ) {
+        if ( e.Source is PlanePlayerController player ) {
             if ( pilot != null )
             {   // exit pilot seat
                 DismountSeat( player );
