@@ -3,7 +3,7 @@ using static Sandbox.Component;
 using System;
 using Sandbox.Movement;
 
-public sealed class AirplaneBase : Component, IPressable, IScenePhysicsEvents
+public sealed class AirplaneBase : Component, IScenePhysicsEvents
 {
     [Property] public float Thrust { get; set; } = 100000f;
     [Property] public float Airbrake_Thrust { get; set; } = 100000f;
@@ -180,23 +180,28 @@ public sealed class AirplaneBase : Component, IPressable, IScenePhysicsEvents
     public void PrePhysicsStep()
     {
         PlanePhysics();
-        if ( pilot == null ) InputPhysics();
+        if ( pilot != null ) InputPhysics();
     
     }
 
+    // public void 
+
     protected override void OnFixedUpdate()
     {
-        
 
-        
+
+
 
     }
 
-    public void Pressable( PlanePlayerController player)
+    public void PutInNearSeat( PlanePlayerController player )
     {
-        
-
+        foreach (GameObject Seat in Seats )
+        {
+           
+        }
     }
+    
     static List<GameObject> ParseSeats( List<GameObject> children)
     {
         List<GameObject> output = new List<GameObject>();
@@ -237,26 +242,29 @@ public sealed class AirplaneBase : Component, IPressable, IScenePhysicsEvents
     
     
 
-    public bool Press( IPressable.Event e) {
-        if ( e.Source is PlanePlayerController player ) {
-            MoveModePlaneWalk movemode = player.Components.Get<MoveModePlaneWalk>();
-            if ( player.Tags.Has( "InPlane" ) )
-            {
-                movemode.Airplane = null;
-                player.Tags.Remove( "InPlane" );
-                // player.WorldPosition = 
-            }
-            else
-            {
-                movemode.Airplane = GameObject;
-                player.Tags.Add( "InPlane" );
-                // player.LocalPosition = SpawnPointChild.LocalPosition; //SpawnPointChild.WorldPosition; BROKEN. Done in 
-            }
+//     public bool Press( IPressable.Event e) {
+//         //put this into the airplane trigger
+//         // if ( e.Source is PlanePlayerController player )
+//         // {
+//         //     MoveModePlaneWalk movemode = player.Components.Get<MoveModePlaneWalk>();
+//         //     if ( player.Tags.Has( "InPlane" ) )
+//         //     {
+//         //         movemode.Airplane = null;
+//         //         player.Tags.Remove( "InPlane" );
+//         //         // player.WorldPosition = 
+//         //     }
+//         //     else
+//         //     {
+//         //         movemode.Airplane = GameObject;
+//         //         player.Tags.Add( "InPlane" );
+//         //         // player.LocalPosition = SpawnPointChild.LocalPosition; //SpawnPointChild.WorldPosition; BROKEN. Done in 
+//         //     }
 
-            //player.UseInputControls = false;
-            // MountCooldownTracker = 0f;
-            // MountSeat( player );
-        }
-        return true;
-    }
+//         //     //player.UseInputControls = false;
+//         //     // MountCooldownTracker = 0f;
+//         //     // MountSeat( player );
+//         // }
+        
+//         return true;
+//     }
 }

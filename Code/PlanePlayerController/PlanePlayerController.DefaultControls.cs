@@ -47,7 +47,8 @@ public sealed partial class PlanePlayerController : Component
 			if ( UseLookControls )
 			{
 				UpdateEyeAngles();
-				UpdateLookAt();
+				// UpdateLookAt(); 			// Put into post physics step, so it doesn't lag on fast objects
+
 			}
 
 			UpdateCameraInput();
@@ -66,6 +67,7 @@ public sealed partial class PlanePlayerController : Component
 	protected override void OnFixedUpdate()
 	{
 		if ( Scene.IsEditor ) return;
+
 
 		UpdateHeadroom();
 		UpdateFalling();
