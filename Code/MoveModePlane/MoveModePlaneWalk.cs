@@ -154,7 +154,7 @@ public sealed class MoveModePlaneWalk : PlaneMoveModeWalk
 
 
 			// Controller.BodyCollider.ColliderFlags = ColliderFlags.IgnoreMass;
-			if ( !GameObject.Parent.Tags.Has( "sittable" ) )
+			if ( !GameObject.Tags.Has("sitting" ) )
 			{
 				Transform CurPlaneTransform = PlaneTransform;
 				Transform PlayerLocalTransform = PrevPlaneTransform.ToLocal( WorldTransform );

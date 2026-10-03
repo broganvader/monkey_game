@@ -230,7 +230,14 @@
       },
       "__PrefabInstancePatch": {
         "AddedObjects": [],
-        "RemovedObjects": [],
+        "RemovedObjects": [
+          {
+            "Id": {
+              "Type": "Component",
+              "IdValue": "5b7e246c-0ecb-477f-8691-36bc35ab6809"
+            }
+          }
+        ],
         "PropertyOverrides": [
           {
             "Target": {
@@ -246,10 +253,35 @@
               "IdValue": "47def27d-fad7-4831-975d-69496b1b0647"
             },
             "Property": "Position",
-            "Value": "1180.2196,96,617.77832"
+            "Value": "917.194275,96,617.77832"
+          },
+          {
+            "Target": {
+              "Type": "Component",
+              "IdValue": "4d7f5ec3-6858-45a7-965d-72a9add85763"
+            },
+            "Property": "ShowRigidbodyComponent",
+            "Value": true
           }
         ],
-        "MovedObjects": []
+        "MovedObjects": [
+          {
+            "Id": {
+              "Type": "Component",
+              "IdValue": "4d7f5ec3-6858-45a7-965d-72a9add85763"
+            },
+            "NewParent": {
+              "Type": "GameObject",
+              "IdValue": "47def27d-fad7-4831-975d-69496b1b0647"
+            },
+            "NewContainerProperty": "Components",
+            "IsNewContainerArray": true,
+            "NewPreviousElement": {
+              "Type": "Component",
+              "IdValue": "6ff690c7-0885-43a1-a71a-a3e12847a124"
+            }
+          }
+        ]
       },
       "__PrefabIdToInstanceId": {
         "47def27d-fad7-4831-975d-69496b1b0647": "a864ae66-3599-4638-8b8a-4341f42ea0ad",
@@ -283,7 +315,7 @@
       "Scale": "1,1,1",
       "Tags": "",
       "Enabled": true,
-      "NetworkMode": 1,
+      "NetworkMode": 2,
       "NetworkFlags": 0,
       "NetworkOrphaned": 0,
       "NetworkTransmit": true,
@@ -293,7 +325,7 @@
           "__type": "Sandbox.Rigidbody",
           "__guid": "6d386c35-e2c5-47bc-8d1f-a320d20bc783",
           "__enabled": true,
-          "Flags": 0,
+          "Flags": 512,
           "AngularDamping": 0.5,
           "EnableImpactDamage": true,
           "EnhancedCcd": false,
@@ -351,6 +383,36 @@
           "Roll_Force": 5000000,
           "Rotational_Drag_Force": 1000,
           "Thrust": 100000
+        },
+        {
+          "__type": "Sandbox.ModelRenderer",
+          "__guid": "07383805-3972-4817-8b58-a7b2eb44ea38",
+          "__enabled": false,
+          "Flags": 0,
+          "BodyGroups": 18446744073709551615,
+          "CreateAttachments": false,
+          "LodOverride": null,
+          "MaterialGroup": null,
+          "MaterialOverride": null,
+          "Materials": null,
+          "Model": {
+            "Id": "68dddf02-4cb2-43f5-974a-7d5618411686",
+            "Path": "models/sbox_props/watermelon/watermelon.vmdl"
+          },
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "RenderOptions": {
+            "GameLayer": true,
+            "OverlayLayer": false,
+            "BloomLayer": false,
+            "AfterUILayer": false
+          },
+          "RenderType": "On",
+          "Tint": "1,1,1,1"
         }
       ],
       "Children": [
@@ -487,7 +549,7 @@
               "MaterialOverride": null,
               "Materials": null,
               "Model": {
-                "Id": "e4798a24-82ff-47e8-ae7e-d53e7e836d55",
+                "Id": "30e97249-263c-48d9-b4a1-2ad0a759abbf",
                 "Path": "materials/ac130/ac130.vmdl"
               },
               "OnComponentDestroy": null,
@@ -515,7 +577,7 @@
               "Friction": 0.22222222,
               "IsTrigger": false,
               "Model": {
-                "Id": "e4798a24-82ff-47e8-ae7e-d53e7e836d55",
+                "Id": "30e97249-263c-48d9-b4a1-2ad0a759abbf",
                 "Path": "materials/ac130/ac130.vmdl"
               },
               "OnComponentDestroy": null,
@@ -589,726 +651,6 @@
           "Children": []
         },
         {
-          "__guid": "1649eaa1-56ae-40d4-93ea-d609c86a8c3f",
-          "__version": 2,
-          "Flags": 0,
-          "Name": "wheel1",
-          "Position": "92.2875977,-193.065247,-64.2367706",
-          "Rotation": "0,0,0,1",
-          "Scale": "1,1,1",
-          "Tags": "",
-          "Enabled": false,
-          "NetworkMode": 2,
-          "NetworkFlags": 0,
-          "NetworkOrphaned": 0,
-          "NetworkTransmit": true,
-          "OwnerTransfer": 1,
-          "Components": [
-            {
-              "__type": "Sandbox.ModelRenderer",
-              "__guid": "9b1577c3-9939-44d7-b256-8b343a682f9d",
-              "__enabled": true,
-              "Flags": 0,
-              "BodyGroups": 18446744073709551615,
-              "CreateAttachments": false,
-              "LodOverride": null,
-              "MaterialGroup": null,
-              "MaterialOverride": null,
-              "Materials": null,
-              "Model": {
-                "Id": "407cc61a-210b-4b86-990e-b7392b3f077b",
-                "Path": "models/citizen_props/wheel01.vmdl"
-              },
-              "OnComponentDestroy": null,
-              "OnComponentDisabled": null,
-              "OnComponentEnabled": null,
-              "OnComponentFixedUpdate": null,
-              "OnComponentStart": null,
-              "OnComponentUpdate": null,
-              "RenderOptions": {
-                "GameLayer": true,
-                "OverlayLayer": false,
-                "BloomLayer": false,
-                "AfterUILayer": false
-              },
-              "RenderType": "On",
-              "Tint": "1,1,1,1"
-            },
-            {
-              "__type": "Sandbox.ModelCollider",
-              "__guid": "cff4fa42-d6a2-4c6a-81db-c03bcd71718f",
-              "__enabled": true,
-              "Flags": 0,
-              "ColliderFlags": 0,
-              "Elasticity": null,
-              "Friction": null,
-              "IsTrigger": false,
-              "Model": {
-                "Id": "407cc61a-210b-4b86-990e-b7392b3f077b",
-                "Path": "models/citizen_props/wheel01.vmdl"
-              },
-              "OnComponentDestroy": null,
-              "OnComponentDisabled": null,
-              "OnComponentEnabled": null,
-              "OnComponentFixedUpdate": null,
-              "OnComponentStart": null,
-              "OnComponentUpdate": null,
-              "OnObjectTriggerEnter": null,
-              "OnObjectTriggerExit": null,
-              "OnTriggerEnter": null,
-              "OnTriggerExit": null,
-              "RollingResistance": null,
-              "Static": false,
-              "Surface": null,
-              "SurfaceVelocity": "0,0,0"
-            },
-            {
-              "__type": "Sandbox.Rigidbody",
-              "__guid": "624c87b4-8b37-49b8-82f4-7e423da5137d",
-              "__enabled": true,
-              "Flags": 0,
-              "AngularDamping": 0,
-              "EnableImpactDamage": true,
-              "EnhancedCcd": false,
-              "Gravity": false,
-              "GravityScale": 1,
-              "ImpactDamage": 0,
-              "LinearDamping": 0,
-              "Locking": {
-                "X": false,
-                "Y": false,
-                "Z": false,
-                "Pitch": false,
-                "Yaw": false,
-                "Roll": false
-              },
-              "MassCenterOverride": "0,0,0",
-              "MassOverride": 0,
-              "MinImpactDamageSpeed": 500,
-              "MotionEnabled": true,
-              "OnComponentDestroy": null,
-              "OnComponentDisabled": null,
-              "OnComponentEnabled": null,
-              "OnComponentFixedUpdate": null,
-              "OnComponentStart": null,
-              "OnComponentUpdate": null,
-              "OverrideMassCenter": false,
-              "RigidbodyFlags": 0,
-              "SleepThreshold": 2,
-              "StartAsleep": false
-            }
-          ],
-          "Children": [
-            {
-              "__guid": "45613222-f254-4095-98cd-3cca22a989ba",
-              "__version": 2,
-              "Flags": 0,
-              "Name": "axis",
-              "Position": "0.15737915,13.0410614,-0.0978393555",
-              "Rotation": "0.49999994,-0.5,-0.5,0.49999994",
-              "Scale": "1,1,1",
-              "Tags": "",
-              "Enabled": false,
-              "NetworkMode": 2,
-              "NetworkFlags": 0,
-              "NetworkOrphaned": 0,
-              "NetworkTransmit": true,
-              "OwnerTransfer": 1,
-              "Components": [
-                {
-                  "__type": "Sandbox.WheelJoint",
-                  "__guid": "b19f1392-d53a-4b78-8162-5f8d565d71b2",
-                  "__enabled": true,
-                  "Flags": 0,
-                  "AnchorBody": null,
-                  "Attachment": "Auto",
-                  "Body": {
-                    "_type": "gameobject",
-                    "go": "95027f84-cb91-4767-88fe-7748f6cb3c27"
-                  },
-                  "BreakForce": 1E+15,
-                  "BreakTorque": 1E+14,
-                  "EnableCollision": true,
-                  "EnableSpinMotor": false,
-                  "EnableSteering": false,
-                  "EnableSteeringLimit": false,
-                  "EnableSuspension": false,
-                  "EnableSuspensionLimit": true,
-                  "LocalFrame1": {
-                    "Position": "0,0,0",
-                    "Scale": "0,0,0",
-                    "Rotation": "0,0,0,0"
-                  },
-                  "LocalFrame2": {
-                    "Position": "0,0,0",
-                    "Scale": "0,0,0",
-                    "Rotation": "0,0,0,0"
-                  },
-                  "MaxSpinTorque": 0,
-                  "MaxSteeringTorque": 0,
-                  "OnBreak": null,
-                  "OnComponentDestroy": null,
-                  "OnComponentDisabled": null,
-                  "OnComponentEnabled": null,
-                  "OnComponentFixedUpdate": null,
-                  "OnComponentStart": null,
-                  "OnComponentUpdate": null,
-                  "SpinMotorSpeed": 0,
-                  "StartBroken": false,
-                  "SteeringDampingRatio": 1,
-                  "SteeringHertz": 10,
-                  "SteeringLimits": "0,0",
-                  "SuspensionDampingRatio": 2,
-                  "SuspensionHertz": 12,
-                  "SuspensionLimits": "25,-25",
-                  "TargetSteeringAngle": 0
-                }
-              ],
-              "Children": []
-            }
-          ]
-        },
-        {
-          "__guid": "af73a3d8-354d-4380-ab74-4cb8bf8c4956",
-          "__version": 2,
-          "Flags": 0,
-          "Name": "wheel1 (1)",
-          "Position": "-68.3388062,-193.065002,-64.2369995",
-          "Rotation": "0,0,0,1",
-          "Scale": "1,1,1",
-          "Tags": "",
-          "Enabled": false,
-          "NetworkMode": 2,
-          "NetworkFlags": 0,
-          "NetworkOrphaned": 0,
-          "NetworkTransmit": true,
-          "OwnerTransfer": 1,
-          "Components": [
-            {
-              "__type": "Sandbox.ModelRenderer",
-              "__guid": "6fa826a4-4b10-4a32-9274-e4577c2b4303",
-              "__enabled": true,
-              "Flags": 0,
-              "BodyGroups": 18446744073709551615,
-              "CreateAttachments": false,
-              "LodOverride": null,
-              "MaterialGroup": null,
-              "MaterialOverride": null,
-              "Materials": null,
-              "Model": {
-                "Id": "407cc61a-210b-4b86-990e-b7392b3f077b",
-                "Path": "models/citizen_props/wheel01.vmdl"
-              },
-              "OnComponentDestroy": null,
-              "OnComponentDisabled": null,
-              "OnComponentEnabled": null,
-              "OnComponentFixedUpdate": null,
-              "OnComponentStart": null,
-              "OnComponentUpdate": null,
-              "RenderOptions": {
-                "GameLayer": true,
-                "OverlayLayer": false,
-                "BloomLayer": false,
-                "AfterUILayer": false
-              },
-              "RenderType": "On",
-              "Tint": "1,1,1,1"
-            },
-            {
-              "__type": "Sandbox.ModelCollider",
-              "__guid": "99697abb-e6a3-447e-9fc4-5c9a3f9b6b4e",
-              "__enabled": true,
-              "Flags": 0,
-              "ColliderFlags": 0,
-              "Elasticity": null,
-              "Friction": null,
-              "IsTrigger": false,
-              "Model": {
-                "Id": "407cc61a-210b-4b86-990e-b7392b3f077b",
-                "Path": "models/citizen_props/wheel01.vmdl"
-              },
-              "OnComponentDestroy": null,
-              "OnComponentDisabled": null,
-              "OnComponentEnabled": null,
-              "OnComponentFixedUpdate": null,
-              "OnComponentStart": null,
-              "OnComponentUpdate": null,
-              "OnObjectTriggerEnter": null,
-              "OnObjectTriggerExit": null,
-              "OnTriggerEnter": null,
-              "OnTriggerExit": null,
-              "RollingResistance": null,
-              "Static": false,
-              "Surface": null,
-              "SurfaceVelocity": "0,0,0"
-            },
-            {
-              "__type": "Sandbox.Rigidbody",
-              "__guid": "4a6a478c-27b1-49bc-8ddf-4fdf48f9dfc8",
-              "__enabled": true,
-              "Flags": 0,
-              "AngularDamping": 0,
-              "EnableImpactDamage": true,
-              "EnhancedCcd": false,
-              "Gravity": false,
-              "GravityScale": 1,
-              "ImpactDamage": 0,
-              "LinearDamping": 0,
-              "Locking": {
-                "X": false,
-                "Y": false,
-                "Z": false,
-                "Pitch": false,
-                "Yaw": false,
-                "Roll": false
-              },
-              "MassCenterOverride": "0,0,0",
-              "MassOverride": 0,
-              "MinImpactDamageSpeed": 500,
-              "MotionEnabled": true,
-              "OnComponentDestroy": null,
-              "OnComponentDisabled": null,
-              "OnComponentEnabled": null,
-              "OnComponentFixedUpdate": null,
-              "OnComponentStart": null,
-              "OnComponentUpdate": null,
-              "OverrideMassCenter": false,
-              "RigidbodyFlags": 0,
-              "SleepThreshold": 2,
-              "StartAsleep": false
-            }
-          ],
-          "Children": [
-            {
-              "__guid": "2c789bf6-3fdd-4ce0-8e0f-996023040bd2",
-              "__version": 2,
-              "Flags": 0,
-              "Name": "axis",
-              "Position": "0.133468628,13.0408173,-0.0281257629",
-              "Rotation": "0.49999994,-0.5,-0.5,0.49999994",
-              "Scale": "1,1,1",
-              "Tags": "",
-              "Enabled": false,
-              "NetworkMode": 2,
-              "NetworkFlags": 0,
-              "NetworkOrphaned": 0,
-              "NetworkTransmit": true,
-              "OwnerTransfer": 1,
-              "Components": [
-                {
-                  "__type": "Sandbox.WheelJoint",
-                  "__guid": "981a30cc-eda1-4e50-bda9-cea21cd887a5",
-                  "__enabled": true,
-                  "Flags": 0,
-                  "AnchorBody": null,
-                  "Attachment": "Auto",
-                  "Body": {
-                    "_type": "gameobject",
-                    "go": "95027f84-cb91-4767-88fe-7748f6cb3c27"
-                  },
-                  "BreakForce": 100000,
-                  "BreakTorque": 0,
-                  "EnableCollision": false,
-                  "EnableSpinMotor": false,
-                  "EnableSteering": false,
-                  "EnableSteeringLimit": false,
-                  "EnableSuspension": false,
-                  "EnableSuspensionLimit": true,
-                  "LocalFrame1": {
-                    "Position": "0,0,0",
-                    "Scale": "0,0,0",
-                    "Rotation": "0,0,0,0"
-                  },
-                  "LocalFrame2": {
-                    "Position": "0,0,0",
-                    "Scale": "0,0,0",
-                    "Rotation": "0,0,0,0"
-                  },
-                  "MaxSpinTorque": 0,
-                  "MaxSteeringTorque": 0,
-                  "OnBreak": null,
-                  "OnComponentDestroy": null,
-                  "OnComponentDisabled": null,
-                  "OnComponentEnabled": null,
-                  "OnComponentFixedUpdate": null,
-                  "OnComponentStart": null,
-                  "OnComponentUpdate": null,
-                  "SpinMotorSpeed": 0,
-                  "StartBroken": false,
-                  "SteeringDampingRatio": 1,
-                  "SteeringHertz": 10,
-                  "SteeringLimits": "0,0",
-                  "SuspensionDampingRatio": 2,
-                  "SuspensionHertz": 12,
-                  "SuspensionLimits": "25,-25",
-                  "TargetSteeringAngle": 0
-                }
-              ],
-              "Children": []
-            }
-          ]
-        },
-        {
-          "__guid": "8d578686-cdee-4b66-b41f-48978f5ff8c2",
-          "__version": 2,
-          "Flags": 0,
-          "Name": "wheel1 (3)",
-          "Position": "92.5686035,198.479858,-64.6699982",
-          "Rotation": "0,0,1,-4.37113883E-08",
-          "Scale": "1,1,1",
-          "Tags": "",
-          "Enabled": false,
-          "NetworkMode": 2,
-          "NetworkFlags": 0,
-          "NetworkOrphaned": 0,
-          "NetworkTransmit": true,
-          "OwnerTransfer": 1,
-          "Components": [
-            {
-              "__type": "Sandbox.ModelRenderer",
-              "__guid": "06810c8d-65c9-4ee7-8124-e78fb7bde4cf",
-              "__enabled": true,
-              "Flags": 0,
-              "BodyGroups": 18446744073709551615,
-              "CreateAttachments": false,
-              "LodOverride": null,
-              "MaterialGroup": null,
-              "MaterialOverride": null,
-              "Materials": null,
-              "Model": {
-                "Id": "407cc61a-210b-4b86-990e-b7392b3f077b",
-                "Path": "models/citizen_props/wheel01.vmdl"
-              },
-              "OnComponentDestroy": null,
-              "OnComponentDisabled": null,
-              "OnComponentEnabled": null,
-              "OnComponentFixedUpdate": null,
-              "OnComponentStart": null,
-              "OnComponentUpdate": null,
-              "RenderOptions": {
-                "GameLayer": true,
-                "OverlayLayer": false,
-                "BloomLayer": false,
-                "AfterUILayer": false
-              },
-              "RenderType": "On",
-              "Tint": "1,1,1,1"
-            },
-            {
-              "__type": "Sandbox.ModelCollider",
-              "__guid": "4a9734a7-ac5e-4a65-8d0d-46936a585f86",
-              "__enabled": true,
-              "Flags": 0,
-              "ColliderFlags": 0,
-              "Elasticity": null,
-              "Friction": null,
-              "IsTrigger": false,
-              "Model": {
-                "Id": "407cc61a-210b-4b86-990e-b7392b3f077b",
-                "Path": "models/citizen_props/wheel01.vmdl"
-              },
-              "OnComponentDestroy": null,
-              "OnComponentDisabled": null,
-              "OnComponentEnabled": null,
-              "OnComponentFixedUpdate": null,
-              "OnComponentStart": null,
-              "OnComponentUpdate": null,
-              "OnObjectTriggerEnter": null,
-              "OnObjectTriggerExit": null,
-              "OnTriggerEnter": null,
-              "OnTriggerExit": null,
-              "RollingResistance": null,
-              "Static": false,
-              "Surface": null,
-              "SurfaceVelocity": "0,0,0"
-            },
-            {
-              "__type": "Sandbox.Rigidbody",
-              "__guid": "c7d7dfd0-de7e-4621-a738-8f13d1d61cfc",
-              "__enabled": true,
-              "Flags": 0,
-              "AngularDamping": 0,
-              "EnableImpactDamage": true,
-              "EnhancedCcd": false,
-              "Gravity": false,
-              "GravityScale": 1,
-              "ImpactDamage": 0,
-              "LinearDamping": 0,
-              "Locking": {
-                "X": false,
-                "Y": false,
-                "Z": false,
-                "Pitch": false,
-                "Yaw": false,
-                "Roll": false
-              },
-              "MassCenterOverride": "0,0,0",
-              "MassOverride": 0,
-              "MinImpactDamageSpeed": 500,
-              "MotionEnabled": true,
-              "OnComponentDestroy": null,
-              "OnComponentDisabled": null,
-              "OnComponentEnabled": null,
-              "OnComponentFixedUpdate": null,
-              "OnComponentStart": null,
-              "OnComponentUpdate": null,
-              "OverrideMassCenter": false,
-              "RigidbodyFlags": 0,
-              "SleepThreshold": 2,
-              "StartAsleep": false
-            }
-          ],
-          "Children": [
-            {
-              "__guid": "552fc491-54b6-4d39-98d8-128ab591515e",
-              "__version": 2,
-              "Flags": 0,
-              "Name": "axis (1)",
-              "Position": "0.116149306,-6.74432373,0.361568451",
-              "Rotation": "0.49999994,-0.5,-0.5,0.49999994",
-              "Scale": "1,1,1",
-              "Tags": "",
-              "Enabled": false,
-              "NetworkMode": 2,
-              "NetworkFlags": 0,
-              "NetworkOrphaned": 0,
-              "NetworkTransmit": true,
-              "OwnerTransfer": 1,
-              "Components": [
-                {
-                  "__type": "Sandbox.WheelJoint",
-                  "__guid": "c2d0c33d-bdda-4e60-8a70-a7ded60180dd",
-                  "__enabled": true,
-                  "Flags": 0,
-                  "AnchorBody": null,
-                  "Attachment": "Auto",
-                  "Body": {
-                    "_type": "gameobject",
-                    "go": "95027f84-cb91-4767-88fe-7748f6cb3c27"
-                  },
-                  "BreakForce": 0,
-                  "BreakTorque": 0,
-                  "EnableCollision": false,
-                  "EnableSpinMotor": false,
-                  "EnableSteering": false,
-                  "EnableSteeringLimit": false,
-                  "EnableSuspension": false,
-                  "EnableSuspensionLimit": true,
-                  "LocalFrame1": {
-                    "Position": "0,0,0",
-                    "Scale": "0,0,0",
-                    "Rotation": "0,0,0,0"
-                  },
-                  "LocalFrame2": {
-                    "Position": "0,0,0",
-                    "Scale": "0,0,0",
-                    "Rotation": "0,0,0,0"
-                  },
-                  "MaxSpinTorque": 0,
-                  "MaxSteeringTorque": 0,
-                  "OnBreak": null,
-                  "OnComponentDestroy": null,
-                  "OnComponentDisabled": null,
-                  "OnComponentEnabled": null,
-                  "OnComponentFixedUpdate": null,
-                  "OnComponentStart": null,
-                  "OnComponentUpdate": null,
-                  "SpinMotorSpeed": 0,
-                  "StartBroken": false,
-                  "SteeringDampingRatio": 1,
-                  "SteeringHertz": 10,
-                  "SteeringLimits": "0,0",
-                  "SuspensionDampingRatio": 2,
-                  "SuspensionHertz": 12,
-                  "SuspensionLimits": "25,-25",
-                  "TargetSteeringAngle": 0
-                }
-              ],
-              "Children": []
-            }
-          ]
-        },
-        {
-          "__guid": "4da48750-994a-4aae-a882-29bf2d043fd8",
-          "__version": 2,
-          "Flags": 0,
-          "Name": "wheel1 (2)",
-          "Position": "-68.1456909,198.480103,-64.2974472",
-          "Rotation": "0,0,1,-4.37113883E-08",
-          "Scale": "1,1,1",
-          "Tags": "",
-          "Enabled": false,
-          "NetworkMode": 2,
-          "NetworkFlags": 0,
-          "NetworkOrphaned": 0,
-          "NetworkTransmit": true,
-          "OwnerTransfer": 1,
-          "Components": [
-            {
-              "__type": "Sandbox.ModelRenderer",
-              "__guid": "8cb64e94-7adc-43be-bffb-00e4a91b6d60",
-              "__enabled": true,
-              "Flags": 0,
-              "BodyGroups": 18446744073709551615,
-              "CreateAttachments": false,
-              "LodOverride": null,
-              "MaterialGroup": null,
-              "MaterialOverride": null,
-              "Materials": null,
-              "Model": {
-                "Id": "407cc61a-210b-4b86-990e-b7392b3f077b",
-                "Path": "models/citizen_props/wheel01.vmdl"
-              },
-              "OnComponentDestroy": null,
-              "OnComponentDisabled": null,
-              "OnComponentEnabled": null,
-              "OnComponentFixedUpdate": null,
-              "OnComponentStart": null,
-              "OnComponentUpdate": null,
-              "RenderOptions": {
-                "GameLayer": true,
-                "OverlayLayer": false,
-                "BloomLayer": false,
-                "AfterUILayer": false
-              },
-              "RenderType": "On",
-              "Tint": "1,1,1,1"
-            },
-            {
-              "__type": "Sandbox.ModelCollider",
-              "__guid": "4b390db3-1cd2-4065-b835-9cff5e2e2180",
-              "__enabled": true,
-              "Flags": 0,
-              "ColliderFlags": 0,
-              "Elasticity": null,
-              "Friction": null,
-              "IsTrigger": false,
-              "Model": {
-                "Id": "407cc61a-210b-4b86-990e-b7392b3f077b",
-                "Path": "models/citizen_props/wheel01.vmdl"
-              },
-              "OnComponentDestroy": null,
-              "OnComponentDisabled": null,
-              "OnComponentEnabled": null,
-              "OnComponentFixedUpdate": null,
-              "OnComponentStart": null,
-              "OnComponentUpdate": null,
-              "OnObjectTriggerEnter": null,
-              "OnObjectTriggerExit": null,
-              "OnTriggerEnter": null,
-              "OnTriggerExit": null,
-              "RollingResistance": null,
-              "Static": false,
-              "Surface": null,
-              "SurfaceVelocity": "0,0,0"
-            },
-            {
-              "__type": "Sandbox.Rigidbody",
-              "__guid": "5d5164b6-e6f8-4903-a15b-2a5db6fca971",
-              "__enabled": true,
-              "Flags": 0,
-              "AngularDamping": 0,
-              "EnableImpactDamage": true,
-              "EnhancedCcd": false,
-              "Gravity": false,
-              "GravityScale": 1,
-              "ImpactDamage": 0,
-              "LinearDamping": 0,
-              "Locking": {
-                "X": false,
-                "Y": false,
-                "Z": false,
-                "Pitch": false,
-                "Yaw": false,
-                "Roll": false
-              },
-              "MassCenterOverride": "0,0,0",
-              "MassOverride": 0,
-              "MinImpactDamageSpeed": 500,
-              "MotionEnabled": true,
-              "OnComponentDestroy": null,
-              "OnComponentDisabled": null,
-              "OnComponentEnabled": null,
-              "OnComponentFixedUpdate": null,
-              "OnComponentStart": null,
-              "OnComponentUpdate": null,
-              "OverrideMassCenter": false,
-              "RigidbodyFlags": 0,
-              "SleepThreshold": 2,
-              "StartAsleep": false
-            }
-          ],
-          "Children": [
-            {
-              "__guid": "e76ac2cb-d4cb-4462-b724-23ef56bf5b9d",
-              "__version": 2,
-              "Flags": 0,
-              "Name": "axis (1)",
-              "Position": "0.0471339151,-5.5078125,0.0372314453",
-              "Rotation": "0.49999994,-0.5,-0.5,0.49999994",
-              "Scale": "1,1,1",
-              "Tags": "",
-              "Enabled": false,
-              "NetworkMode": 2,
-              "NetworkFlags": 0,
-              "NetworkOrphaned": 0,
-              "NetworkTransmit": true,
-              "OwnerTransfer": 1,
-              "Components": [
-                {
-                  "__type": "Sandbox.WheelJoint",
-                  "__guid": "ed64aab2-eb59-4ab7-88e1-25b80f37bbc4",
-                  "__enabled": true,
-                  "Flags": 0,
-                  "AnchorBody": null,
-                  "Attachment": "Auto",
-                  "Body": {
-                    "_type": "gameobject",
-                    "go": "95027f84-cb91-4767-88fe-7748f6cb3c27"
-                  },
-                  "BreakForce": 0,
-                  "BreakTorque": 0,
-                  "EnableCollision": false,
-                  "EnableSpinMotor": false,
-                  "EnableSteering": false,
-                  "EnableSteeringLimit": false,
-                  "EnableSuspension": false,
-                  "EnableSuspensionLimit": true,
-                  "LocalFrame1": {
-                    "Position": "0,0,0",
-                    "Scale": "0,0,0",
-                    "Rotation": "0,0,0,0"
-                  },
-                  "LocalFrame2": {
-                    "Position": "0,0,0",
-                    "Scale": "0,0,0",
-                    "Rotation": "0,0,0,0"
-                  },
-                  "MaxSpinTorque": 0,
-                  "MaxSteeringTorque": 0,
-                  "OnBreak": null,
-                  "OnComponentDestroy": null,
-                  "OnComponentDisabled": null,
-                  "OnComponentEnabled": null,
-                  "OnComponentFixedUpdate": null,
-                  "OnComponentStart": null,
-                  "OnComponentUpdate": null,
-                  "SpinMotorSpeed": 0,
-                  "StartBroken": false,
-                  "SteeringDampingRatio": 1,
-                  "SteeringHertz": 10,
-                  "SteeringLimits": "0,0",
-                  "SuspensionDampingRatio": 2,
-                  "SuspensionHertz": 12,
-                  "SuspensionLimits": "25,-25",
-                  "TargetSteeringAngle": 0
-                }
-              ],
-              "Children": []
-            }
-          ]
-        },
-        {
           "__guid": "215e7360-91e4-4bc2-bbbf-d7c77e57e7a3",
           "__version": 2,
           "Flags": 0,
@@ -1316,7 +658,7 @@
           "Position": "-14.8048859,330.167389,22.5945129",
           "Rotation": "0,0,0.99999994,0",
           "Scale": "1,1,1",
-          "Tags": "",
+          "Tags": "plane",
           "Enabled": true,
           "NetworkMode": 2,
           "NetworkFlags": 0,
@@ -1352,7 +694,7 @@
               "MaterialOverride": null,
               "Materials": null,
               "Model": {
-                "Id": "594f9e75-58ff-4345-ae20-0ab8adf0d963",
+                "Id": "21e9cf69-8432-40ce-a1e2-c759af4e8d5a",
                 "Path": "models/sbox_props/bathtub_a/bathtub_a.vmdl"
               },
               "OnComponentDestroy": null,
@@ -1380,7 +722,7 @@
               "Friction": null,
               "IsTrigger": false,
               "Model": {
-                "Id": "594f9e75-58ff-4345-ae20-0ab8adf0d963",
+                "Id": "21e9cf69-8432-40ce-a1e2-c759af4e8d5a",
                 "Path": "models/sbox_props/bathtub_a/bathtub_a.vmdl"
               },
               "OnComponentDestroy": null,
@@ -1409,7 +751,7 @@
           "Position": "-15.8875122,-319.07666,17.8937988",
           "Rotation": "0,0,-5.96046448E-08,-0.999999881",
           "Scale": "1,1,1",
-          "Tags": "",
+          "Tags": "plane",
           "Enabled": true,
           "NetworkMode": 2,
           "NetworkFlags": 0,
@@ -1445,7 +787,7 @@
               "MaterialOverride": null,
               "Materials": null,
               "Model": {
-                "Id": "594f9e75-58ff-4345-ae20-0ab8adf0d963",
+                "Id": "21e9cf69-8432-40ce-a1e2-c759af4e8d5a",
                 "Path": "models/sbox_props/bathtub_a/bathtub_a.vmdl"
               },
               "OnComponentDestroy": null,
@@ -1473,7 +815,7 @@
               "Friction": null,
               "IsTrigger": false,
               "Model": {
-                "Id": "594f9e75-58ff-4345-ae20-0ab8adf0d963",
+                "Id": "21e9cf69-8432-40ce-a1e2-c759af4e8d5a",
                 "Path": "models/sbox_props/bathtub_a/bathtub_a.vmdl"
               },
               "OnComponentDestroy": null,
@@ -1520,7 +862,7 @@
           "Position": "96.9158936,1.76785278,24.3544464",
           "Rotation": "0,0,0,1",
           "Scale": "1,1,1",
-          "Tags": "",
+          "Tags": "sittable,plane",
           "Enabled": true,
           "NetworkMode": 2,
           "NetworkFlags": 0,
@@ -1540,7 +882,7 @@
               "MaterialOverride": null,
               "Materials": null,
               "Model": {
-                "Id": "7f77c09b-f276-4ecf-9813-0d7de5088a4a",
+                "Id": "2a99d69d-8408-44da-877a-605ca0f84bee",
                 "Path": "models/sbox_props/car_seat/car_seat.vmdl"
               },
               "OnComponentDestroy": null,
@@ -1557,6 +899,46 @@
               },
               "RenderType": "On",
               "Tint": "1,1,1,1"
+            },
+            {
+              "__type": "PilotSeat",
+              "__guid": "544bee7f-c926-44fa-9317-857c62f35b46",
+              "__enabled": true,
+              "Flags": 0,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null
+            },
+            {
+              "__type": "Sandbox.ModelCollider",
+              "__guid": "ad7751bb-a4df-4dbb-943c-7a0862ba7ced",
+              "__enabled": true,
+              "Flags": 0,
+              "ColliderFlags": 0,
+              "Elasticity": null,
+              "Friction": null,
+              "IsTrigger": false,
+              "Model": {
+                "Id": "2a99d69d-8408-44da-877a-605ca0f84bee",
+                "Path": "models/sbox_props/car_seat/car_seat.vmdl"
+              },
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "OnObjectTriggerEnter": null,
+              "OnObjectTriggerExit": null,
+              "OnTriggerEnter": null,
+              "OnTriggerExit": null,
+              "RollingResistance": null,
+              "Static": false,
+              "Surface": null,
+              "SurfaceVelocity": "0,0,0"
             }
           ],
           "Children": []
@@ -1957,7 +1339,8 @@
   "__references": [
     "andiq.ac130_hercules#12782",
     "facepunch.bathtub#279774",
-    "facepunch.carseat#143559"
+    "facepunch.carseat#143559",
+    "facepunch.watermelon#288901"
   ],
   "__version": 3
 }

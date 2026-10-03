@@ -29,7 +29,7 @@ public sealed class AirplaneBase : Component, IScenePhysicsEvents
     public List<GameObject> Seats { get; set; }
 
 
-    private PlanePlayerController pilot;
+    public PlanePlayerController pilot;
     private float catching_wind; // 0-1, based on max speed
 
     TimeSince MountCooldownTracker = 0f;
@@ -98,7 +98,7 @@ public sealed class AirplaneBase : Component, IScenePhysicsEvents
         //     currentRotation.Up * lift_scale * catching_wind
         // );
         //get total amoutn of air hitting the plane
-        Vector3 drag_vector = body.Velocity.ProjectOnNormal( currentRotation.Forward.Normal ) - body.Velocity;
+        // Vector3 drag_vector = body.Velocity.ProjectOnNormal( currentRotation.Forward.Normal ) - body.Velocity;
 
         Vector3 rotational_drag_vector = -body.Velocity.Cross( currentRotation.Forward.Normal );
 
@@ -126,70 +126,106 @@ public sealed class AirplaneBase : Component, IScenePhysicsEvents
     void InputPhysics()
     {
         Rotation currentRotation = WorldRotation;
-            if ( Input.Down( "Use" ) && MountCooldownTracker >= Mount_Cooldown )
-            {
-                MountCooldownTracker = 0f;
-                DismountSeat( pilot );
-            }
+        if ( Input.Down( "Use" ) && MountCooldownTracker >= Mount_Cooldown )
+        {
+            MountCooldownTracker = 0f;
+            DismountSeat( pilot );
+        }
 
-            //Forwards and back
-            if ( Input.Down( "Jump" ) && body.Velocity.Length <= max_speed )
-            {
-                // Log.Info( $"IM THRUSTTTINGGG:  {body.Velocity.Length}" );
-                body.ApplyForce(
-                    currentRotation.Forward * Thrust
-                );
-            }
-            if ( Input.Down( "Duck" ) )
-            {
-                body.ApplyForce(
-                    currentRotation.Backward * Thrust
-                );
-            }
+        //Forwards and back
+        if ( Input.Down( "Jump" ) && body.Velocity.Length <= max_speed )
+        {
+            // Log.Info( $"IM THRUSTTTINGGG:  {body.Velocity.Length}" );
+            body.ApplyForce(
+                currentRotation.Forward * Thrust
+            );
+        }
+        if ( Input.Down( "Duck" ) )
+        {
+            body.ApplyForce(
+                currentRotation.Backward * Thrust
+            );
+        }
 
 
-            //Roll
-            if ( Input.Down( "Left" ) )
-            {
-                body.ApplyTorque(
-                    currentRotation.Forward * Roll_Force * -1 * catching_wind
-                );
-            }
-            if ( Input.Down( "Right" ) )
-            {
-                body.ApplyTorque(
-                    currentRotation.Forward * Roll_Force * catching_wind
-                );
-            }
+        //Roll
+        if ( Input.Down( "Left" ) )
+        {
+            body.ApplyTorque(
+                currentRotation.Forward * Roll_Force * -1 * catching_wind
+            );
+        }
+        if ( Input.Down( "Right" ) )
+        {
+            body.ApplyTorque(
+                currentRotation.Forward * Roll_Force * catching_wind
+            );
+        }
 
-            //pitch
-            if ( Input.Down( "Forward" ) )
-            {
-                body.ApplyTorque(
-                    currentRotation.Right * Pitch_Force * -1 * catching_wind
-                );
-            }
-            if ( Input.Down( "Backward" ) )
-            {
-                body.ApplyTorque(
-                    currentRotation.Right * Pitch_Force * catching_wind
-                );
-            }
+        //pitch
+        if ( Input.Down( "Forward" ) )
+        {
+            body.ApplyTorque(
+                currentRotation.Right * Pitch_Force * -1 * catching_wind
+            );
+        }
+        if ( Input.Down( "Backward" ) )
+        {
+            body.ApplyTorque(
+                currentRotation.Right * Pitch_Force * catching_wind
+            );
+        }
     }
 
-    public void PrePhysicsStep()
-    {
-        PlanePhysics();
-        if ( pilot != null ) InputPhysics();
+    // public void PrePhysicsStep()
+    // {
+    //     PlanePhysics();
+    //     if ( pilot != null ) InputPhysics();
     
-    }
+    // }
 
     // public void 
 
     protected override void OnFixedUpdate()
     {
+        update_catching_wind( body );
+        Rotation currentRotation = WorldRotation;
+
+        if ( body == null )
+            return;
+
+        //apply lift:
+        // body.ApplyForce(
+        //     currentRotation.Up * lift_scale * catching_wind
+        // );
+        //get total amoutn of air hitting the plane
+        // Vector3 drag_vector = body.Velocity.ProjectOnNormal( currentRotation.Forward.Normal ) - body.Velocity;
+
+        Vector3 rotational_drag_vector = -body.Velocity.Cross( currentRotation.Forward.Normal );
 
 
+        //get lift
+        // Vector3 lift_vector = currentRotation.Up.Dot(drag_vector);
+        Vector3 lift_vector = body.Velocity.ProjectOnNormal( currentRotation.Up.Normal );
+
+        //apply lift
+        body.ApplyForce(
+            lift_vector * lift_scale * -1 * catching_wind
+        );
+
+        //apply rotational drag
+        body.ApplyTorque(
+            rotational_drag_vector * Rotational_Drag_Force * catching_wind
+        );
+
+        // draw_vector_debug( rotational_drag_vector, Color.Red );
+        // draw_vector_debug( drag_vector, Color.Blue );
+
+        //TODO add drag
+
+
+        // PlanePhysics();
+        if ( pilot != null ) InputPhysics();
 
 
     }
@@ -213,8 +249,12 @@ public sealed class AirplaneBase : Component, IScenePhysicsEvents
     }
 
 
-    private void MountSeat( PlanePlayerController player )
+    public void MountSeat( PlanePlayerController player )
     {
+        MountCooldownTracker = 0f;
+
+        player.Tags.Add("sitting");
+
         player.Body.Enabled = false;
         player.ColliderObject.Enabled = false;
         player.UseAnimatorControls = false;
@@ -227,8 +267,12 @@ public sealed class AirplaneBase : Component, IScenePhysicsEvents
 
     }
 
-    private void DismountSeat( PlanePlayerController player )
+    public void DismountSeat( PlanePlayerController player )
     {
+        MountCooldownTracker = 0f;
+
+        player.Tags.Remove("sitting");
+
         player.Body.Enabled = true;
         player.ColliderObject.Enabled = true;
         player.UseAnimatorControls = true;

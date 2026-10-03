@@ -217,6 +217,12 @@ public sealed partial class PlanePlayerController : Component, IScenePhysicsEven
 
 	void IScenePhysicsEvents.PostPhysicsStep()
 	{
+
+		// if ( !IsProxy && UseLookControls)
+		// {
+ 		// 	UpdateLookAt(); //taken from OnUpdate, now not interpolated between physics steps.
+		// }
+
 		Velocity = Body.Velocity - GroundVelocity;
 		UpdateGroundVelocity();
 

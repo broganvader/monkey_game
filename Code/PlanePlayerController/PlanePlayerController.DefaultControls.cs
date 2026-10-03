@@ -47,7 +47,7 @@ public sealed partial class PlanePlayerController : Component
 			if ( UseLookControls )
 			{
 				UpdateEyeAngles();
-				// UpdateLookAt(); 			// Put into post physics step, so it doesn't lag on fast objects
+				UpdateLookAt(); 			// Put into post physics step, so it doesn't lag on fast objects
 
 			}
 
