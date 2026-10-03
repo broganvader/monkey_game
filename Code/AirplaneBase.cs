@@ -1,7 +1,9 @@
 using Sandbox;
+using static Sandbox.Component;
 using System;
+using Sandbox.Movement;
 
-public sealed class AirplaneBase : Component, Component.IPressable
+public sealed class AirplaneBase : Component, IPressable, IScenePhysicsEvents
 {
     [Property] public float Thrust { get; set; } = 100000f;
     [Property] public float Airbrake_Thrust { get; set; } = 100000f;
@@ -18,12 +20,19 @@ public sealed class AirplaneBase : Component, Component.IPressable
     // [Property] public float Grarvity_Scale_Real {get; set; } = 0.2f;
     [Property] public float lift_scale { get; set; } = 2000f;
 
+    [Property] public float Mount_Radius { get; set; } = 256f;
+    [Property] public float Mount_Cooldown { get; set; } = 0.5f;
+
+
     [Property] public GameObject PilotSeat { get; set; }
+
+    public List<GameObject> Seats { get; set; }
+
 
     private PlanePlayerController pilot;
     private float catching_wind; // 0-1, based on max speed
 
-    TimeSince DismountCooldown = 0f;
+    TimeSince MountCooldownTracker = 0f;
 
     void update_catching_wind(Rigidbody body){
         float cur_speed = body.Velocity.Length;
@@ -54,18 +63,30 @@ public sealed class AirplaneBase : Component, Component.IPressable
         DebugOverlay.Line( startPos, endPos, Color, duration: 0f, overlay: true );
     }
     Rigidbody body;
-    GameObject SpawnPointChild;
-	protected override void OnStart()
+    // public GameObject SpawnPointChild;
+    public GameObject SpawnPointChild;
+
+
+
+    protected override void OnStart()
     {
-        SpawnPointChild = GameObject.Children.FirstOrDefault( x => x.Name == "SpawnPoint" );
+        List<GameObject> allChildren = GameObject.Children;
+        SpawnPointChild = allChildren.FirstOrDefault( x => x.Name == "SpawnPoint" );
+        Seats = ParseSeats( allChildren );
+
+
+        // SpawnPointLoc = SpawnPointChild.WorldPosition;
+
         body = Components.Get<Rigidbody>();
-        Tags.Add( "plane" );
+        // Tags.Add( "plane" );
+
         base.OnStart();
-	}
+    }
+    
 
-    protected override void OnFixedUpdate()
+    void PlanePhysics()
     {
-
+        
         update_catching_wind( body );
         Rotation currentRotation = WorldRotation;
 
@@ -96,75 +117,95 @@ public sealed class AirplaneBase : Component, Component.IPressable
             rotational_drag_vector * Rotational_Drag_Force * catching_wind
         );
 
-        //apply drag //TODO
-        // body.ApplyForce(
-        //     Math.Abs(rotational_drag_vector.Length) * (body.Velocity * -1) * Drag_Force
-        // );
+        // draw_vector_debug( rotational_drag_vector, Color.Red );
+        // draw_vector_debug( drag_vector, Color.Blue );
 
-        draw_vector_debug( rotational_drag_vector, Color.Red );
-        draw_vector_debug( drag_vector, Color.Blue );
+        //TODO add drag
+    }
 
-        if ( pilot == null )
-        {
-            return;
-        }
+    void InputPhysics()
+    {
+        Rotation currentRotation = WorldRotation;
+            if ( Input.Down( "Use" ) && MountCooldownTracker >= Mount_Cooldown )
+            {
+                MountCooldownTracker = 0f;
+                DismountSeat( pilot );
+            }
 
-        if ( Input.Down( "Use" ) && DismountCooldown >= 1f )
-        {
-            DismountSeat( pilot );
-        }
-
-        //Forwards and back
-        if ( Input.Down( "Jump" ) && body.Velocity.Length <= max_speed )
-        {
-            // Log.Info( $"IM THRUSTTTINGGG:  {body.Velocity.Length}" );
-            body.ApplyForce(
-                currentRotation.Forward * Thrust
-            );
-        }
-        if ( Input.Down( "Duck" ) )
-        {
-            body.ApplyForce(
-                currentRotation.Backward * Thrust
-            );
-        }
+            //Forwards and back
+            if ( Input.Down( "Jump" ) && body.Velocity.Length <= max_speed )
+            {
+                // Log.Info( $"IM THRUSTTTINGGG:  {body.Velocity.Length}" );
+                body.ApplyForce(
+                    currentRotation.Forward * Thrust
+                );
+            }
+            if ( Input.Down( "Duck" ) )
+            {
+                body.ApplyForce(
+                    currentRotation.Backward * Thrust
+                );
+            }
 
 
-        //Roll
-        if ( Input.Down( "Left" ) )
-        {
-            body.ApplyTorque(
-                currentRotation.Forward * Roll_Force * -1 * catching_wind
-            );
-        }
-        if ( Input.Down( "Right" ) )
-        {
-            body.ApplyTorque(
-                currentRotation.Forward * Roll_Force * catching_wind
-            );
-        }
+            //Roll
+            if ( Input.Down( "Left" ) )
+            {
+                body.ApplyTorque(
+                    currentRotation.Forward * Roll_Force * -1 * catching_wind
+                );
+            }
+            if ( Input.Down( "Right" ) )
+            {
+                body.ApplyTorque(
+                    currentRotation.Forward * Roll_Force * catching_wind
+                );
+            }
 
-        //pitch
+            //pitch
+            if ( Input.Down( "Forward" ) )
+            {
+                body.ApplyTorque(
+                    currentRotation.Right * Pitch_Force * -1 * catching_wind
+                );
+            }
+            if ( Input.Down( "Backward" ) )
+            {
+                body.ApplyTorque(
+                    currentRotation.Right * Pitch_Force * catching_wind
+                );
+            }
+    }
 
-        if ( Input.Down( "Forward" ) )
-        {
-            body.ApplyTorque(
-                currentRotation.Right * Pitch_Force * -1 * catching_wind
-            );
-        }
-        if ( Input.Down( "Backward" ) )
-        {
-            body.ApplyTorque(
-                currentRotation.Right * Pitch_Force * catching_wind
-            );
-        }
+    public void PrePhysicsStep()
+    {
+        PlanePhysics();
+        if ( pilot == null ) InputPhysics();
+    
+    }
 
-        // body.Velocity.Clamp(0, max_speed);
+    protected override void OnFixedUpdate()
+    {
+        
+
+        
 
     }
 
+    public void Pressable( PlanePlayerController player)
+    {
+        
 
-
+    }
+    static List<GameObject> ParseSeats( List<GameObject> children)
+    {
+        List<GameObject> output = new List<GameObject>();
+        foreach ( GameObject child in children )
+        {
+            if ( child.Tags.Has( "sittable" ) ) output.Add( child );
+        }
+        return output;
+    }
 
 
     private void MountSeat( PlanePlayerController player )
@@ -180,30 +221,41 @@ public sealed class AirplaneBase : Component, Component.IPressable
         pilot = player;
 
     }
-    
-    private void DismountSeat(PlanePlayerController player )
+
+    private void DismountSeat( PlanePlayerController player )
     {
         player.Body.Enabled = true;
         player.ColliderObject.Enabled = true;
         player.UseAnimatorControls = true;
 
         pilot.LocalPosition = SpawnPointChild.LocalPosition;
+        pilot.LocalRotation = SpawnPointChild.LocalRotation;
         pilot.GameObject.SetParent( null );
         pilot = null;
 
     }
+    
+    
 
     public bool Press( IPressable.Event e) {
         if ( e.Source is PlanePlayerController player ) {
-            if ( pilot != null )
-            {   // exit pilot seat
-                DismountSeat( player );
-                DismountCooldown = 0f;
-                return true;
+            MoveModePlaneWalk movemode = player.Components.Get<MoveModePlaneWalk>();
+            if ( player.Tags.Has( "InPlane" ) )
+            {
+                movemode.Airplane = null;
+                player.Tags.Remove( "InPlane" );
+                // player.WorldPosition = 
             }
+            else
+            {
+                movemode.Airplane = GameObject;
+                player.Tags.Add( "InPlane" );
+                // player.LocalPosition = SpawnPointChild.LocalPosition; //SpawnPointChild.WorldPosition; BROKEN. Done in 
+            }
+
             //player.UseInputControls = false;
-            DismountCooldown = 0f;
-            MountSeat( player );
+            // MountCooldownTracker = 0f;
+            // MountSeat( player );
         }
         return true;
     }

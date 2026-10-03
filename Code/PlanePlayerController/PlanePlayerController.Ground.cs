@@ -70,7 +70,7 @@ public sealed partial class PlanePlayerController : Component
 			return;
 
 		var currentPosition = WorldPosition;
-		var up = PlaneUp;
+		var up = UpDirection;
 
 		float radiusScale = 1.0f;
 		var tr = TraceBody( currentPosition + up, currentPosition - up * stepSize, radiusScale, 0.5f );

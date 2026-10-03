@@ -47,8 +47,10 @@ public sealed partial class PlanePlayerController : Component
 		var feetHeight = CurrentHeight * 0.5f;
 		var radius = (BodyRadius * MathF.Sqrt( 2 )) / 2;
 		var up = UpDirection;
-		var localUp = Rotation.FromYaw( -WorldRotation.Yaw() ) * up;
+		var localUp = WorldRotation.Inverse * up;
 		var localUpAbs = localUp.Abs();
+
+		// Log.Info( $"localUp:  {localUp}" );
 
 		// If we're not on the ground, we have slippy as fuck feet
 		var feetFriction = 0.0f;

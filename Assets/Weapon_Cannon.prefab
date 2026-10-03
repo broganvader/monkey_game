@@ -7,7 +7,7 @@
     "Position": "0,0,0",
     "Rotation": "0,0,-0.707106769,0.707106769",
     "Scale": "1,1,1",
-    "Tags": "",
+    "Tags": "player,sittable",
     "Enabled": true,
     "NetworkMode": 2,
     "NetworkFlags": 0,
@@ -27,7 +27,7 @@
         "MaterialOverride": null,
         "Materials": null,
         "Model": {
-          "Id": "fc883fde-d0e3-4d50-bc93-88bb9fcd5a87",
+          "Id": "98318964-17d4-402f-be10-d4f2d729a66a",
           "Path": "models/reizer_props/srsp/random_stuff/pirate_cannon_01/01/pirate_cannon_01.vmdl"
         },
         "OnComponentDestroy": null,
@@ -55,7 +55,7 @@
         "Friction": null,
         "IsTrigger": false,
         "Model": {
-          "Id": "fc883fde-d0e3-4d50-bc93-88bb9fcd5a87",
+          "Id": "98318964-17d4-402f-be10-d4f2d729a66a",
           "Path": "models/reizer_props/srsp/random_stuff/pirate_cannon_01/01/pirate_cannon_01.vmdl"
         },
         "OnComponentDestroy": null,

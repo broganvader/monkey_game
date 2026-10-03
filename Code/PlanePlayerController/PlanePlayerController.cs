@@ -104,10 +104,7 @@ public sealed partial class PlanePlayerController : Component, IScenePhysicsEven
 
 	// internal Vector3 UpDirection => Scene.Is2D ? Vector2.Up : Vector3.Up;
 
-	public Vector3 UpDirection = Vector3.Up;        //SINGLE WORD CHANG NEEDED. INTERNAL TO PUBLIC
-	[Property] GameObject PlaneObj {get;set;} //plane to be relative to
-
-	public Vector3 PlaneUp;
+	public Vector3 UpDirection = Vector3.Up;        //SINGLE WORD CHANG NEEDED. INTERNAL -> PUBLIC
 
 	internal Vector3 WithoutVertical( Vector3 value )
 	{
@@ -209,7 +206,6 @@ public sealed partial class PlanePlayerController : Component, IScenePhysicsEven
 
 	void IScenePhysicsEvents.PrePhysicsStep()
 	{
-		PlaneUp = PlaneObj.WorldRotation.Up;
 		UpdateBody();
 
 		if ( IsProxy )
