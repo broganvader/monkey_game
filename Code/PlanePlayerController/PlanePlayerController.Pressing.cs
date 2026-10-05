@@ -227,14 +227,12 @@ public sealed partial class PlanePlayerController : Component
 							.HitTriggers()
 							.RunAll();
 
-			// bool first = true;
 			foreach ( var hit in hits )
 			{
-				// if (!first){
-				Gizmo.Draw.Color = Color.Green;
-				Gizmo.Draw.SolidSphere( hit.EndPosition, 2.0f );
-				// 	first = false;
-				// }
+				// draw the hits
+				// Gizmo.Draw.Color = Color.Green;
+				// Gizmo.Draw.SolidSphere( hit.EndPosition, 2.0f );
+
 				// Get the GameObject of the collider, not the physics body
 				var hitObject = hit.Collider?.GameObject ?? hit.GameObject;
 

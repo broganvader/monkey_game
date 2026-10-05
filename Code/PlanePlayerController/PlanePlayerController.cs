@@ -167,9 +167,8 @@ public sealed partial class PlanePlayerController : Component, IScenePhysicsEven
 
 		if ( !Scene.IsEditor )
 		{
+			//WARNIGN these angles are off when on airplane. Might not need to fix. 
 			EyeAngles = WorldRotation.Angles() with { pitch = 0, roll = 0 };
-
-			// EyeAngles = (EyeAngles.ToRotation() * Mode.PlaneTransform.Rotation).Angles();
 
 			if ( true )// !Scene.Is2D )
 			{
@@ -222,11 +221,11 @@ public sealed partial class PlanePlayerController : Component, IScenePhysicsEven
 	void IScenePhysicsEvents.PostPhysicsStep()
 	{
 
-		// if ( !IsProxy && UseLookControls)
-		// {
-		// 	UpdateEyeTransform();
- 		// 	UpdateLookAt(); //taken from OnUpdate, now not interpolated between physics steps.
-		// }
+		if ( !IsProxy && UseLookControls)
+		{
+			UpdateEyeTransform();
+ 			UpdateLookAt(); //taken from OnUpdate, now not interpolated between physics steps.
+		}
 
 		Velocity = Body.Velocity - GroundVelocity;
 		UpdateGroundVelocity();
