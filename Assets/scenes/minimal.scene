@@ -253,7 +253,15 @@
               "IdValue": "47def27d-fad7-4831-975d-69496b1b0647"
             },
             "Property": "Position",
-            "Value": "917.194275,96,617.77832"
+            "Value": "673.740234,-1698.17175,604.700195"
+          },
+          {
+            "Target": {
+              "Type": "GameObject",
+              "IdValue": "47def27d-fad7-4831-975d-69496b1b0647"
+            },
+            "Property": "Rotation",
+            "Value": "0,0.130525514,0,0.991444826"
           },
           {
             "Target": {
@@ -262,6 +270,22 @@
             },
             "Property": "ShowRigidbodyComponent",
             "Value": true
+          },
+          {
+            "Target": {
+              "Type": "Component",
+              "IdValue": "2fe885cb-bf02-4af3-b316-eba944bc0440"
+            },
+            "Property": "Gravity",
+            "Value": false
+          },
+          {
+            "Target": {
+              "Type": "Component",
+              "IdValue": "2fe885cb-bf02-4af3-b316-eba944bc0440"
+            },
+            "Property": "MassOverride",
+            "Value": 500
           }
         ],
         "MovedObjects": [
@@ -310,8 +334,8 @@
       "__version": 2,
       "Flags": 0,
       "Name": "Ship",
-      "Position": "872.699951,98.2321472,188.085114",
-      "Rotation": "0,0,0,0.999999881",
+      "Position": "519.549316,-1695.93933,201.164368",
+      "Rotation": "0,0.130525514,0,0.991444767",
       "Scale": "1,1,1",
       "Tags": "",
       "Enabled": true,
@@ -396,7 +420,7 @@
           "MaterialOverride": null,
           "Materials": null,
           "Model": {
-            "Id": "68dddf02-4cb2-43f5-974a-7d5618411686",
+            "Id": "0bb569ca-aa5e-499f-b82f-eb393605c0b9",
             "Path": "models/sbox_props/watermelon/watermelon.vmdl"
           },
           "OnComponentDestroy": null,
@@ -424,7 +448,7 @@
           "Position": "-20.0235634,0.425926328,82.6100616",
           "Rotation": "0,0,0,1",
           "Scale": "1,1,1",
-          "Tags": "trigger",
+          "Tags": "trigger,cube",
           "Enabled": true,
           "NetworkMode": 2,
           "NetworkFlags": 0,
@@ -549,7 +573,7 @@
               "MaterialOverride": null,
               "Materials": null,
               "Model": {
-                "Id": "30e97249-263c-48d9-b4a1-2ad0a759abbf",
+                "Id": "1f4c17e3-989c-457f-9290-aa00b293c4f4",
                 "Path": "materials/ac130/ac130.vmdl"
               },
               "OnComponentDestroy": null,
@@ -577,7 +601,7 @@
               "Friction": 0.22222222,
               "IsTrigger": false,
               "Model": {
-                "Id": "30e97249-263c-48d9-b4a1-2ad0a759abbf",
+                "Id": "1f4c17e3-989c-457f-9290-aa00b293c4f4",
                 "Path": "materials/ac130/ac130.vmdl"
               },
               "OnComponentDestroy": null,
@@ -694,7 +718,7 @@
               "MaterialOverride": null,
               "Materials": null,
               "Model": {
-                "Id": "21e9cf69-8432-40ce-a1e2-c759af4e8d5a",
+                "Id": "0230abb6-233a-4361-84ef-716331cdb327",
                 "Path": "models/sbox_props/bathtub_a/bathtub_a.vmdl"
               },
               "OnComponentDestroy": null,
@@ -722,7 +746,7 @@
               "Friction": null,
               "IsTrigger": false,
               "Model": {
-                "Id": "21e9cf69-8432-40ce-a1e2-c759af4e8d5a",
+                "Id": "0230abb6-233a-4361-84ef-716331cdb327",
                 "Path": "models/sbox_props/bathtub_a/bathtub_a.vmdl"
               },
               "OnComponentDestroy": null,
@@ -787,7 +811,7 @@
               "MaterialOverride": null,
               "Materials": null,
               "Model": {
-                "Id": "21e9cf69-8432-40ce-a1e2-c759af4e8d5a",
+                "Id": "0230abb6-233a-4361-84ef-716331cdb327",
                 "Path": "models/sbox_props/bathtub_a/bathtub_a.vmdl"
               },
               "OnComponentDestroy": null,
@@ -815,7 +839,7 @@
               "Friction": null,
               "IsTrigger": false,
               "Model": {
-                "Id": "21e9cf69-8432-40ce-a1e2-c759af4e8d5a",
+                "Id": "0230abb6-233a-4361-84ef-716331cdb327",
                 "Path": "models/sbox_props/bathtub_a/bathtub_a.vmdl"
               },
               "OnComponentDestroy": null,
@@ -882,7 +906,7 @@
               "MaterialOverride": null,
               "Materials": null,
               "Model": {
-                "Id": "2a99d69d-8408-44da-877a-605ca0f84bee",
+                "Id": "7b841e40-cfdb-4117-8f09-9bb0cca154ef",
                 "Path": "models/sbox_props/car_seat/car_seat.vmdl"
               },
               "OnComponentDestroy": null,
@@ -922,7 +946,7 @@
               "Friction": null,
               "IsTrigger": false,
               "Model": {
-                "Id": "2a99d69d-8408-44da-877a-605ca0f84bee",
+                "Id": "7b841e40-cfdb-4117-8f09-9bb0cca154ef",
                 "Path": "models/sbox_props/car_seat/car_seat.vmdl"
               },
               "OnComponentDestroy": null,

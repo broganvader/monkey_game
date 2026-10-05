@@ -37,7 +37,7 @@ public sealed class MoveModePlaneWalk : PlaneMoveModeWalk
 		Tags.Add( "player" );
 		Controller = Components.GetOrCreate<PlanePlayerController>();
 
-		Controller.RotationSpeed = 1000f;
+		Controller.RotationSpeed = 1.0f;
 
 		base.OnStart();
 
@@ -97,7 +97,7 @@ public sealed class MoveModePlaneWalk : PlaneMoveModeWalk
 
 	public override void ModifyCamera( ref CameraView view )
 	{
-		Vector3 Offset = PrevPlaneTransform.Position - PlaneTransform.Position;
+		// Vector3 Offset = PrevPlaneTransform.Position - PlaneTransform.Position;
 
 		if ( Airplane != null )
 		{
@@ -196,6 +196,7 @@ public sealed class MoveModePlaneWalk : PlaneMoveModeWalk
 		}
 		if ( needsTP )
 		{
+			Controller.Body.Velocity = Vector3.Zero;
 			Vector3 PlaneVelocity = AirplaneBody.Velocity * PerSecToPerTick;
 			spawnpoint.Position += PlaneVelocity; //account for tick delay
 			WorldTransform = spawnpoint;
@@ -214,6 +215,11 @@ public sealed class MoveModePlaneWalk : PlaneMoveModeWalk
 		//dont care lolge
 
 		return true;
+	}
+	
+	protected override void OnUpdate()
+	{
+		if(Airplane != null) PlaneTransform = Airplane.WorldTransform;
 	}
 
 
@@ -290,6 +296,9 @@ public sealed class MoveModePlaneWalk : PlaneMoveModeWalk
 
 	protected override void OnRotateRenderBody( SkinnedModelRenderer renderer )
 	{
+		// base.OnRotateRenderBody(renderer);
+		
+
 		// if ( Scene.Is2D )
 		// 	return;
 
@@ -319,7 +328,7 @@ public sealed class MoveModePlaneWalk : PlaneMoveModeWalk
 		Vector3 velocity = Controller.WishVelocity.WithZ( 0 );
 
 		float rotateDifference = renderer.WorldRotation.Distance( targetAngle );
-		Rotation oldRotation = renderer.WorldRotation;
+		// Rotation oldRotation = renderer.WorldRotation;
 
 		// We're over the limit - snap it 
 		if ( rotateDifference > Controller.RotationAngleLimit )

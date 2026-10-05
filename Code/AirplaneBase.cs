@@ -188,43 +188,43 @@ public sealed class AirplaneBase : Component, IScenePhysicsEvents
 
     protected override void OnFixedUpdate()
     {
-        update_catching_wind( body );
-        Rotation currentRotation = WorldRotation;
+        // update_catching_wind( body );
+        // Rotation currentRotation = WorldRotation;
 
-        if ( body == null )
-            return;
+        // if ( body == null )
+        //     return;
 
-        //apply lift:
+        // //apply lift:
+        // // body.ApplyForce(
+        // //     currentRotation.Up * lift_scale * catching_wind
+        // // );
+        // //get total amoutn of air hitting the plane
+        // // Vector3 drag_vector = body.Velocity.ProjectOnNormal( currentRotation.Forward.Normal ) - body.Velocity;
+
+        // Vector3 rotational_drag_vector = -body.Velocity.Cross( currentRotation.Forward.Normal );
+
+
+        // //get lift
+        // // Vector3 lift_vector = currentRotation.Up.Dot(drag_vector);
+        // Vector3 lift_vector = body.Velocity.ProjectOnNormal( currentRotation.Up.Normal );
+
+        // //apply lift
         // body.ApplyForce(
-        //     currentRotation.Up * lift_scale * catching_wind
+        //     lift_vector * lift_scale * -1 * catching_wind
         // );
-        //get total amoutn of air hitting the plane
-        // Vector3 drag_vector = body.Velocity.ProjectOnNormal( currentRotation.Forward.Normal ) - body.Velocity;
 
-        Vector3 rotational_drag_vector = -body.Velocity.Cross( currentRotation.Forward.Normal );
+        // //apply rotational drag
+        // body.ApplyTorque(
+        //     rotational_drag_vector * Rotational_Drag_Force * catching_wind
+        // );
 
+        // // draw_vector_debug( rotational_drag_vector, Color.Red );
+        // // draw_vector_debug( drag_vector, Color.Blue );
 
-        //get lift
-        // Vector3 lift_vector = currentRotation.Up.Dot(drag_vector);
-        Vector3 lift_vector = body.Velocity.ProjectOnNormal( currentRotation.Up.Normal );
-
-        //apply lift
-        body.ApplyForce(
-            lift_vector * lift_scale * -1 * catching_wind
-        );
-
-        //apply rotational drag
-        body.ApplyTorque(
-            rotational_drag_vector * Rotational_Drag_Force * catching_wind
-        );
-
-        // draw_vector_debug( rotational_drag_vector, Color.Red );
-        // draw_vector_debug( drag_vector, Color.Blue );
-
-        //TODO add drag
+        // //TODO add drag
 
 
-        // PlanePhysics();
+        PlanePhysics();
         if ( pilot != null ) InputPhysics();
 
 

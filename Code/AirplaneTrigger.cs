@@ -14,7 +14,7 @@ public sealed class AirplaneTrigger : Component, Component.ITriggerListener
 
 	public void OnTriggerEnter( Collider other )
 	{
-		Log.Info( $"Something exited" );
+		Log.Info( $"Something Entered" );
 		var player = other.Components.GetInParentOrSelf<PlanePlayerController>();
 		// Log.Info( $"{other.GameObject.Name} left the pickup zone" );
 		if ( player == null ) return;

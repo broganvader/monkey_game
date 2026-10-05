@@ -45,6 +45,8 @@ public sealed class Cannon : Component, Component.IPressable
 	public bool Press( IPressable.Event e) {
         if ( e.Source is PlanePlayerController player ) {
             if ( cannon_operator != null ) {   // exit operator seat
+                player.Tags.Remove("sitting");
+
                 player.Body.Enabled = true;
                 player.ColliderObject.Enabled = true;
                 player.UseAnimatorControls = true;
@@ -53,6 +55,8 @@ public sealed class Cannon : Component, Component.IPressable
                 cannon_operator = null;
                 return true;
             }
+            player.Tags.Add("sitting");
+
             //player.UseInputControls = false;
             player.Body.Enabled = false;
             player.ColliderObject.Enabled = false;
@@ -60,7 +64,7 @@ public sealed class Cannon : Component, Component.IPressable
 
             player.Renderer.Set("sit",4);
             player.GameObject.SetParent( GameObject );
-            player.LocalPosition = Vector3.Up * 5;
+            // player.LocalPosition = Vector3.Up * 5;
 
             cannon_operator = player;
         }

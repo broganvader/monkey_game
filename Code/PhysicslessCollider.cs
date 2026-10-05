@@ -14,14 +14,10 @@ public sealed class PhysicslessCollider : Component, IScenePhysicsEvents
 
 	private void UpdatePosition()
 	{
-		WorldRotation = ObjToFollow.WorldTransform.Rotation.RotateAroundAxis( FollowingBody.AngularVelocity.Normal,  FollowingBody.AngularVelocity.Length );
+		WorldRotation = ObjToFollow.WorldTransform.Rotation.RotateAroundAxis( FollowingBody.AngularVelocity.Normal,  FollowingBody.AngularVelocity.Length * 90f * PerSecToPerTick);
 		WorldPosition = ObjToFollow.WorldTransform.Position + (FollowingBody.Velocity * PerSecToPerTick);
 	}
 
-	public Transform UpdateTransform(Transform Input )
-	{
-		return new Transform(Input.Position + (FollowingBody.Velocity * PerSecToPerTick), Input.Rotation.RotateAroundAxis( FollowingBody.AngularVelocity,  FollowingBody.AngularVelocity.Length), 1);
-	}
 
 	public void PostPhysicsStep()
 	{

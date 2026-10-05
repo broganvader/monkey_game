@@ -62,9 +62,9 @@ public sealed partial class PlanePlayerController : Component
 	/// </summary>
 	internal void Reground( float stepSize )
 	{
-		if ( !IsOnGround )
+		if ( !IsOnGround ){
 			return;
-
+		}
 		// Don't keep regrounding if we're not moving
 		if ( Body.Sleeping )
 			return;
@@ -120,12 +120,12 @@ public sealed partial class PlanePlayerController : Component
 		}
 
 		// ground is pushing us crazy, stop being grounded
-		if ( groundVel > 250 )
-		{
-			PreventGrounding( 0.3f );
-			UpdateGroundFromTraceResult( default );
-			return;
-		}
+		// if ( groundVel > 250 )
+		// {
+		// 	PreventGrounding( 0.3f );
+		// 	UpdateGroundFromTraceResult( default );
+		// 	return;
+		// }
 
 		var velocity = Velocity - GroundVelocity;
 		if ( _timeUntilAllowedGround > 0 || groundVel > 300 )
@@ -134,22 +134,32 @@ public sealed partial class PlanePlayerController : Component
 			return;
 		}
 
-		var from = WorldPosition + up * 4;
-		var to = WorldPosition - up * 2;
+		var from = WorldPosition + up * 8;
+		var to = WorldPosition - up * 4;
 
 		float radiusScale = 1;
 		var tr = TraceBody( from, to, radiusScale, 0.5f );
 
+
+		// Gizmo.Draw.Color = Color.Green;
+		// Gizmo.Draw.SolidSphere( tr.EndPosition, 2.0f );
+
+
+
 		while ( tr.StartedSolid || (tr.Hit && !Mode.IsStandableSurface( tr )) )
 		{
+			// Log.Info($"Started Solid: {tr.StartedSolid}");
+
 			radiusScale = radiusScale - 0.1f;
 			if ( radiusScale < 0.7f )
 			{
+				Log.Info("Giving up this tick");
 				UpdateGroundFromTraceResult( default );
 				return;
 			}
 
 			tr = TraceBody( from, to, radiusScale, 0.5f );
+
 		}
 
 		if ( tr.StartedSolid )
