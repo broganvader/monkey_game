@@ -126,11 +126,11 @@ public sealed class AirplaneBase : Component, IScenePhysicsEvents
     void InputPhysics()
     {
         Rotation currentRotation = WorldRotation;
-        if ( Input.Down( "Use" ) && MountCooldownTracker >= Mount_Cooldown )
-        {
-            MountCooldownTracker = 0f;
-            DismountSeat( pilot );
-        }
+        // if ( Input.Down( "Use" ) && MountCooldownTracker >= Mount_Cooldown )
+        // {
+        //     MountCooldownTracker = 0f;
+        //     DismountSeat( pilot );
+        // }
 
         //Forwards and back
         if ( Input.Down( "Jump" ) && body.Velocity.Length <= max_speed )
@@ -251,6 +251,13 @@ public sealed class AirplaneBase : Component, IScenePhysicsEvents
 
     public void MountSeat( PlanePlayerController player )
     {
+        Log.Info($"MOUNTING");
+        // Log.Info($"Mount_Cooldown: {Mount_Cooldown}");
+        if (MountCooldownTracker < Mount_Cooldown) return;
+        if (player.Tags.Has("sitting")) {
+            DismountSeat(player);
+            return;
+        }
         MountCooldownTracker = 0f;
 
         player.Tags.Add("sitting");
@@ -269,6 +276,12 @@ public sealed class AirplaneBase : Component, IScenePhysicsEvents
 
     public void DismountSeat( PlanePlayerController player )
     {
+        Log.Info($"DIS MOUNTING");
+        if (MountCooldownTracker < Mount_Cooldown )
+        {
+            Log.Info($"COOLDOWN FAILED DIS MOUNTING");
+            return;
+        } 
         MountCooldownTracker = 0f;
 
         player.Tags.Remove("sitting");
@@ -277,8 +290,8 @@ public sealed class AirplaneBase : Component, IScenePhysicsEvents
         player.ColliderObject.Enabled = true;
         player.UseAnimatorControls = true;
 
-        pilot.LocalPosition = SpawnPointChild.LocalPosition;
-        pilot.LocalRotation = SpawnPointChild.LocalRotation;
+        // pilot.LocalPosition = SpawnPointChild.LocalPosition;
+        // pilot.LocalRotation = SpawnPointChild.LocalRotation;
         pilot.GameObject.SetParent( null );
         pilot = null;
 

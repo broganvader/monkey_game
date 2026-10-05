@@ -80,6 +80,7 @@ public sealed partial class PlanePlayerController : Component
 		}
 
 		EyeAngles = ee;
+;
 	}
 
 	void InputMove()

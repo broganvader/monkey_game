@@ -1,5 +1,6 @@
 using Sandbox;
 using static Sandbox.ModelPhysics;
+using static Sandbox.SubtitleTrack;
 using static Sandbox.VertexLayout;
 using System.Numerics;
 using System;
@@ -11,10 +12,11 @@ public sealed class MoveModePlaneWalk : PlaneMoveModeWalk
 	[Property] float GravityScale { get; set; } = 1.0f;
 
 
-	Transform PlaneTransform;
+	public Transform PlaneTransform;
 	Transform PrevPlaneTransform;
-	Rigidbody AirplaneBody;
+	public Rigidbody AirplaneBody;
 	public bool WasAirplaneNull;
+	private bool WasSitting;
 	Transform spawnpoint;
 	protected override void OnStart()
 	{
@@ -138,9 +140,7 @@ public sealed class MoveModePlaneWalk : PlaneMoveModeWalk
 
 				// spawnpoint = spawnpointchild.WorldTransform;
 				spawnpoint = Airplane.GetComponent<AirplaneBase>().SpawnPointChild.WorldTransform;
-				// WorldTransform = spawnpoint;
 
-				// LocalTransform = global::Transform.Zero;
 				WasAirplaneNull = false;
 				needsTP = true;
 			}
@@ -156,6 +156,13 @@ public sealed class MoveModePlaneWalk : PlaneMoveModeWalk
 			// Controller.BodyCollider.ColliderFlags = ColliderFlags.IgnoreMass;
 			if ( !GameObject.Tags.Has("sitting" ) )
 			{
+				if ( WasSitting )
+				{
+					WasSitting = false;
+					spawnpoint = Airplane.GetComponent<AirplaneBase>().SpawnPointChild.WorldTransform;
+					needsTP = true;
+				}
+
 				Transform CurPlaneTransform = PlaneTransform;
 				Transform PlayerLocalTransform = PrevPlaneTransform.ToLocal( WorldTransform );
 
@@ -176,6 +183,10 @@ public sealed class MoveModePlaneWalk : PlaneMoveModeWalk
 				// WorldTransform += TransformChange;
 				PrevPlaneTransform = PlaneTransform;
 			}
+			else	//player is sitting
+			{
+				WasSitting = true;
+			}
 		}
 		else
 		{
@@ -185,6 +196,8 @@ public sealed class MoveModePlaneWalk : PlaneMoveModeWalk
 		}
 		if ( needsTP )
 		{
+			Vector3 PlaneVelocity = AirplaneBody.Velocity * PerSecToPerTick;
+			spawnpoint.Position += PlaneVelocity; //account for tick delay
 			WorldTransform = spawnpoint;
 			needsTP = false;
 		}

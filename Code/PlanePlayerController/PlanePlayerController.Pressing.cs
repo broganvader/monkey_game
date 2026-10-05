@@ -1,4 +1,5 @@
-﻿namespace Sandbox;
+﻿using System.Numerics;
+namespace Sandbox;
 
 public sealed partial class PlanePlayerController : Component
 {
@@ -209,17 +210,31 @@ public sealed partial class PlanePlayerController : Component
 		// when looking through holes we'll be able to use stuff, but also
 		// when trying to use smaller things it won't be so fiddly. This is
 		// what we did in Rust and it worked great.
+
+		// Don't care! Making the sphere MASSIVE!!
 		for ( float f = 0.0f; f <= 4.0f; f += 2.0f )
 		{
-			var hits = Scene.Trace
-							.Ray( EyePosition, EyePosition + EyeAngles.Forward * (ReachLength - f) )
+			// Scene.Trace.Ray( EyePosition, EyePosition + EyeAngles.Forward * (ReachLength - f));
+
+			var ModifiedForward = (Mode.PlaneTransform.Rotation * EyeAngles.ToRotation()).Forward;
+
+
+			IEnumerable<SceneTraceResult> hits = Scene.Trace
+							.Ray( EyePosition, EyePosition + ModifiedForward * (ReachLength - f) )
 							.IgnoreGameObjectHierarchy( GameObject )
 							.Radius( f )
+							.WithoutTags( "cube" )
 							.HitTriggers()
 							.RunAll();
 
+			// bool first = true;
 			foreach ( var hit in hits )
 			{
+				// if (!first){
+				Gizmo.Draw.Color = Color.Green;
+				Gizmo.Draw.SolidSphere( hit.EndPosition, 2.0f );
+				// 	first = false;
+				// }
 				// Get the GameObject of the collider, not the physics body
 				var hitObject = hit.Collider?.GameObject ?? hit.GameObject;
 

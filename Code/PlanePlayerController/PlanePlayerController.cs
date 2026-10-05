@@ -169,6 +169,8 @@ public sealed partial class PlanePlayerController : Component, IScenePhysicsEven
 		{
 			EyeAngles = WorldRotation.Angles() with { pitch = 0, roll = 0 };
 
+			// EyeAngles = (EyeAngles.ToRotation() * Mode.PlaneTransform.Rotation).Angles();
+
 			if ( true )// !Scene.Is2D )
 			{
 				WorldRotation = Rotation.Identity;
@@ -206,6 +208,7 @@ public sealed partial class PlanePlayerController : Component, IScenePhysicsEven
 
 	void IScenePhysicsEvents.PrePhysicsStep()
 	{
+
 		UpdateBody();
 
 		if ( IsProxy )
@@ -213,6 +216,7 @@ public sealed partial class PlanePlayerController : Component, IScenePhysicsEven
 
 		Mode.AddVelocity();
 		Mode.PrePhysicsStep();
+
 	}
 
 	void IScenePhysicsEvents.PostPhysicsStep()
@@ -220,6 +224,7 @@ public sealed partial class PlanePlayerController : Component, IScenePhysicsEven
 
 		// if ( !IsProxy && UseLookControls)
 		// {
+		// 	UpdateEyeTransform();
  		// 	UpdateLookAt(); //taken from OnUpdate, now not interpolated between physics steps.
 		// }
 
