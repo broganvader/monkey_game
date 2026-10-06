@@ -73,13 +73,13 @@ public sealed class AirplaneBase : Component, IScenePhysicsEvents
         List<GameObject> allChildren = GameObject.Children;
         SpawnPointChild = allChildren.FirstOrDefault( x => x.Name == "SpawnPoint" );
         Seats = ParseSeats( allChildren );
-
+    
 
         // SpawnPointLoc = SpawnPointChild.WorldPosition;
 
         body = Components.Get<Rigidbody>();
         // Tags.Add( "plane" );
-
+        GameObject.Network.SetOwnerTransfer( OwnerTransfer.Takeover );
         base.OnStart();
     }
     
@@ -114,7 +114,7 @@ public sealed class AirplaneBase : Component, IScenePhysicsEvents
 
         //apply rotational drag
         body.ApplyTorque(
-            rotational_drag_vector * Rotational_Drag_Force * catching_wind
+            rotational_drag_vector * Rotational_Drag_Force
         );
 
         // draw_vector_debug( rotational_drag_vector, Color.Red );
@@ -125,6 +125,7 @@ public sealed class AirplaneBase : Component, IScenePhysicsEvents
 
     void InputPhysics()
     {
+        // Log.Info( $"Physics" );
         Rotation currentRotation = WorldRotation;
         // if ( Input.Down( "Use" ) && MountCooldownTracker >= Mount_Cooldown )
         // {
@@ -135,7 +136,7 @@ public sealed class AirplaneBase : Component, IScenePhysicsEvents
         //Forwards and back
         if ( Input.Down( "Jump" ) && body.Velocity.Length <= max_speed )
         {
-            // Log.Info( $"IM THRUSTTTINGGG:  {body.Velocity.Length}" );
+            Log.Info( $"IM THRUSTTTINGGG:  {body.Velocity.Length}" );
             body.ApplyForce(
                 currentRotation.Forward * Thrust
             );
@@ -223,7 +224,7 @@ public sealed class AirplaneBase : Component, IScenePhysicsEvents
 
         // //TODO add drag
 
-
+	    // Log.Info( $"Owner is {Network.OwnerId}" );
         PlanePhysics();
         if ( pilot != null ) InputPhysics();
 
@@ -248,29 +249,37 @@ public sealed class AirplaneBase : Component, IScenePhysicsEvents
         return output;
     }
 
+    // [Rpc.Owner]
+    // private void ChangeOwnership(PlanePlayerController player)
+    // {
+    //     // GameObject.Network.SetOwnerTransfer( player );
+    // }
+
 
     public void MountSeat( PlanePlayerController player )
     {
-        Log.Info($"MOUNTING");
+        Log.Info( $"MOUNTING" );
         // Log.Info($"Mount_Cooldown: {Mount_Cooldown}");
-        if (MountCooldownTracker < Mount_Cooldown) return;
-        if (player.Tags.Has("sitting")) {
-            DismountSeat(player);
+        if ( MountCooldownTracker < Mount_Cooldown ) return;
+        if ( player.Tags.Has( "sitting" ) )
+        {
+            DismountSeat( player );
             return;
         }
         MountCooldownTracker = 0f;
 
-        player.Tags.Add("sitting");
+        player.Tags.Add( "sitting" );
 
         player.Body.Enabled = false;
         player.ColliderObject.Enabled = false;
         player.UseAnimatorControls = false;
 
         player.Renderer.Set( "sit", 4 );
-        player.GameObject.SetParent( GameObject );
-        player.LocalPosition = PilotSeat.LocalPosition;
+        // player.GameObject.SetParent( GameObject );
+        player.WorldPosition = PilotSeat.WorldPosition;
 
         pilot = player;
+        GameObject.Network.TakeOwnership();
 
     }
 
@@ -292,8 +301,10 @@ public sealed class AirplaneBase : Component, IScenePhysicsEvents
 
         // pilot.LocalPosition = SpawnPointChild.LocalPosition;
         // pilot.LocalRotation = SpawnPointChild.LocalRotation;
-        pilot.GameObject.SetParent( null );
+        // pilot.GameObject.SetParent( null );
         pilot = null;
+
+        GameObject.Network.DropOwnership();
 
     }
     

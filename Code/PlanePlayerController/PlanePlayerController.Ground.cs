@@ -134,12 +134,12 @@ public sealed partial class PlanePlayerController : Component
 			return;
 		}
 
-		var from = WorldPosition + up * 8;
-		var to = WorldPosition - up * 4;
+		var from = WorldPosition + up * 16;
+		var to = WorldPosition - up * 8;
 
 		float radiusScale = 1;
 		var tr = TraceBody( from, to, radiusScale, 0.5f );
-
+		// DebugOverlay.Trace( tr, 0.5f );
 
 		// Gizmo.Draw.Color = Color.Green;
 		// Gizmo.Draw.SolidSphere( tr.EndPosition, 2.0f );

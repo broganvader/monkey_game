@@ -14,10 +14,21 @@ public sealed class PhysicslessCollider : Component, IScenePhysicsEvents
 
 	private void UpdatePosition()
 	{
-		WorldRotation = ObjToFollow.WorldTransform.Rotation.RotateAroundAxis( FollowingBody.AngularVelocity.Normal,  FollowingBody.AngularVelocity.Length * 90f * PerSecToPerTick);
-		WorldPosition = ObjToFollow.WorldTransform.Position + (FollowingBody.Velocity * PerSecToPerTick);
+		WorldRotation = ObjToFollow.WorldTransform.Rotation; //RotateAroundAxis( FollowingBody.AngularVelocity.Normal,  FollowingBody.AngularVelocity.Length * 90f * PerSecToPerTick);
+		WorldPosition = ObjToFollow.WorldTransform.Position;// + (FollowingBody.Velocity * PerSecToPerTick);
 	}
 
+	Transform PrevObjTransform = global::Transform.Zero;
+
+	private void UpdatePositionPredict()
+	{
+
+
+		Rotation Delta = Rotation.Difference( PrevObjTransform.Rotation, ObjToFollow.WorldTransform.Rotation );
+
+		WorldRotation = ObjToFollow.WorldTransform.Rotation;// * Delta;//.RotateAroundAxis( FollowingBody.AngularVelocity.Normal, FollowingBody.AngularVelocity.Length * PerSecToPerTick );
+		WorldPosition = ObjToFollow.WorldTransform.Position + (FollowingBody.Velocity * PerSecToPerTick);
+	}
 
 	public void PostPhysicsStep()
 	{
@@ -35,7 +46,7 @@ public sealed class PhysicslessCollider : Component, IScenePhysicsEvents
 	}
 	public void PrePhysicsStep()
 	{
-		UpdatePosition();
+		UpdatePositionPredict();
 	}
 
 // 	public override void OnFixedUpdate()

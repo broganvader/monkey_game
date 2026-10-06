@@ -1,4 +1,5 @@
 using Sandbox;
+using static Sandbox.Gizmo;
 using static Sandbox.ModelPhysics;
 using static Sandbox.SubtitleTrack;
 using static Sandbox.VertexLayout;
@@ -98,9 +99,10 @@ public sealed class MoveModePlaneWalk : PlaneMoveModeWalk
 	public override void ModifyCamera( ref CameraView view )
 	{
 		// Vector3 Offset = PrevPlaneTransform.Position - PlaneTransform.Position;
-
+		if ( IsProxy ) return;
 		if ( Airplane != null )
 		{
+			// Log.Info( "AIRPLANE NOT NULL" );
 			view.Rotation = view.Rotation * Rotation.Difference( Airplane.LocalRotation, Airplane.WorldRotation );
 		}
 		// view.Position += Offset;
@@ -128,8 +130,15 @@ public sealed class MoveModePlaneWalk : PlaneMoveModeWalk
 	bool needsTP = false;
 	float PerSecToPerTick = 1f / ProjectSettings.Physics.FixedUpdateFrequency;
 	Vector3 LastPlaneVelocity = Vector3.Zero;
+	Vector3 LastPlaneAngVelocity = Vector3.Zero;
+	Rotation LastPlaneRotDiff = Rotation.Identity;
+	Transform PlayerLocalTransform = global::Transform.Zero;
+
+	private Transform PlayerTransformPrePhys = global::Transform.Zero;
+
 	public override void PrePhysicsStep()
 	{
+		if ( IsProxy ) return;
 		if ( Airplane != null )
 		{
 			if ( WasAirplaneNull )
@@ -154,39 +163,41 @@ public sealed class MoveModePlaneWalk : PlaneMoveModeWalk
 
 
 			// Controller.BodyCollider.ColliderFlags = ColliderFlags.IgnoreMass;
-			if ( !GameObject.Tags.Has("sitting" ) )
-			{
-				if ( WasSitting )
-				{
-					WasSitting = false;
-					spawnpoint = Airplane.GetComponent<AirplaneBase>().SpawnPointChild.WorldTransform;
-					needsTP = true;
-				}
+			// if ( !GameObject.Tags.Has("sitting" ) )
+			// {
+				// if ( WasSitting )
+				// {
+				// 	WasSitting = false;
+				// 	spawnpoint = Airplane.GetComponent<AirplaneBase>().SpawnPointChild.WorldTransform;
+				// 	needsTP = true;
+				// }
 
-				Transform CurPlaneTransform = PlaneTransform;
-				Transform PlayerLocalTransform = PrevPlaneTransform.ToLocal( WorldTransform );
-
-				Vector3 PlaneVelocity = AirplaneBody.Velocity * PerSecToPerTick;
-				Vector3 PlaneAcceleration = PlaneVelocity - LastPlaneVelocity;// add this to player too, so they dnt slide back when plane accelerates
-																			  //make planeacceleration only forwards. Sideway accel doesn't rly matter, since always small and messes with forwards accel turning
-				PlaneAcceleration = PlaneAcceleration.ProjectOnNormal( PlaneTransform.Rotation.Forward.Normal );
-
-				WorldTransform = CurPlaneTransform.ToWorld( PlayerLocalTransform );
+			PlayerLocalTransform = PrevPlaneTransform.ToLocal( WorldTransform );
 
 
-				WorldPosition += PlaneAcceleration;
+			Vector3 PlaneVelocity = AirplaneBody.Velocity * PerSecToPerTick;
+			Vector3 PlaneAcceleration = PlaneVelocity - LastPlaneVelocity;// add this to player too, so they dnt slide back when plane accelerates
 
-				LastPlaneVelocity = PlaneVelocity;
+			Rotation PlaneRotDiff = Rotation.Difference( PrevPlaneTransform.Rotation, PlaneTransform.Rotation );
 
-				// Log.Info( $"Position change:  {PositionChange}" );
+			WorldTransform = Airplane.WorldTransform.ToWorld( PlayerLocalTransform );
 
-				// WorldTransform += TransformChange;
-				PrevPlaneTransform = PlaneTransform;
-			}
-			else	//player is sitting
-			{
-				WasSitting = true;
-			}
+			//Fix lagging behind by 1 tick by planes. 
+			WorldPosition += PlaneAcceleration;
+			//Fix weird rotation being based around next tick's position. 
+			WorldPosition = WorldPosition.RotateAround( WorldPosition + PlaneVelocity, PlaneRotDiff);
+
+			// Draw center of rotation. 
+			// Gizmo.Draw.Color = Colors.Red;
+			// Gizmo.Draw.LineSphere( WorldPosition + PlaneVelocity, 15 );
+
+			LastPlaneVelocity = PlaneVelocity;
+			PrevPlaneTransform = PlaneTransform;
+			// }
+			// else	//player is sitting
+			// {
+			// 	WasSitting = true;
+			// }
 		}
 		else
 		{
@@ -202,11 +213,27 @@ public sealed class MoveModePlaneWalk : PlaneMoveModeWalk
 			WorldTransform = spawnpoint;
 			needsTP = false;
 		}
-		Controller.Body.ApplyForce( -1 * Controller.UpDirection * 112000 * GravityScale );
+		// if ( !Controller.IsOnGround )
+		// {
+			Controller.Body.ApplyForce( -1 * Controller.UpDirection * 112000 * GravityScale );
+		// }
 		base.PrePhysicsStep();
 
 
 	}
+	public override void PostPhysicsStep()
+	{
+		if ( Airplane != null )
+		{
+			if ( !GameObject.Tags.Has( "sitting" ) )
+			{
+				// WorldTransform = Airplane.WorldTransform.ToWorld( PlayerLocalTransform );
+
+				// Controller.Body.WorldTransform = Airplane.WorldTransform.ToWorld( PlayerTransformPrePhys );
+			}
+		}
+	}
+
 	public override bool IsStandableSurface( in SceneTraceResult result )
 	{
 		// if ( Vector3.GetAngle( Controller.UpDirection, result.Normal ) > GroundAngle )
@@ -280,6 +307,7 @@ public sealed class MoveModePlaneWalk : PlaneMoveModeWalk
 
 	public override Vector3 UpdateMove( Rotation eyes, Vector3 input )
 	{
+
 		// var myupdatemove = base.base.UpdateMove(eyes, input);
 		// return myupdatemove;
 
@@ -297,7 +325,7 @@ public sealed class MoveModePlaneWalk : PlaneMoveModeWalk
 	protected override void OnRotateRenderBody( SkinnedModelRenderer renderer )
 	{
 		// base.OnRotateRenderBody(renderer);
-		
+		if ( IsProxy ) return;
 
 		// if ( Scene.Is2D )
 		// 	return;

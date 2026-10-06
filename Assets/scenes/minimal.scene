@@ -253,7 +253,7 @@
               "IdValue": "47def27d-fad7-4831-975d-69496b1b0647"
             },
             "Property": "Position",
-            "Value": "673.740234,-1698.17175,604.700195"
+            "Value": "445.996094,-279.450928,270.865265"
           },
           {
             "Target": {
@@ -262,6 +262,14 @@
             },
             "Property": "Rotation",
             "Value": "0,0.130525514,0,0.991444826"
+          },
+          {
+            "Target": {
+              "Type": "GameObject",
+              "IdValue": "47def27d-fad7-4831-975d-69496b1b0647"
+            },
+            "Property": "Enabled",
+            "Value": false
           },
           {
             "Target": {
@@ -277,15 +285,7 @@
               "IdValue": "2fe885cb-bf02-4af3-b316-eba944bc0440"
             },
             "Property": "Gravity",
-            "Value": false
-          },
-          {
-            "Target": {
-              "Type": "Component",
-              "IdValue": "2fe885cb-bf02-4af3-b316-eba944bc0440"
-            },
-            "Property": "MassOverride",
-            "Value": 500
+            "Value": true
           }
         ],
         "MovedObjects": [
@@ -310,9 +310,7 @@
       "__PrefabIdToInstanceId": {
         "47def27d-fad7-4831-975d-69496b1b0647": "a864ae66-3599-4638-8b8a-4341f42ea0ad",
         "4e04a5b8-657e-43b5-8455-6302011669c6": "4bf2b356-0cda-4e96-bb96-09edaa9a014d",
-        "a3d5e431-0e12-4b50-bdde-16ad8c22245e": "24ba8855-9a99-4531-85aa-6baf1c3fae8d",
         "486ac7aa-befb-4b9a-be15-9ffb75b9e157": "4ab7822f-c3a2-4a00-80fa-03036a111eef",
-        "c0da6a13-36d3-42b8-90ef-d08945d1a157": "25274436-93e1-4605-8da8-0e44e2c42c9c",
         "0e112d03-df83-4b5b-aa20-52763bb72a1b": "cf073b55-d64e-42b2-b594-9b9bfdb3eedc",
         "d9e4b34f-986d-4752-a128-a89be148d486": "1987f92e-c99e-4d74-b065-9f88c6f77945",
         "82ba9ec7-d4f9-491c-b9fa-79375e079383": "9ca98ea4-55ee-4802-a84f-8e41b25bfb3e",
@@ -323,10 +321,9 @@
         "2fe885cb-bf02-4af3-b316-eba944bc0440": "c39070d2-bc24-4824-964d-bba9b44b0b15",
         "173749ff-c77e-4701-a7b8-1b1c71b2c0a7": "01213029-8980-4a10-988b-e32135db0565",
         "1af42899-18d3-4308-978a-f393880e9d41": "9d0f1181-a934-4017-8695-0b3dc8623f05",
-        "f906b49e-661e-4a2e-9b3c-435ff5e43354": "009cfbf1-026d-4fe8-a1e9-4ee7b0a37d98",
-        "b7e09c48-342e-42f1-a806-d1a95fc471f1": "0b4db1af-beaa-4a03-9bd3-7472d019e1ce",
         "48dc5e59-eabc-4609-af7f-03f25ef930ca": "7934edd7-525f-42e7-a376-ea686d469e6d",
-        "28e3fcbe-4fb3-4197-928c-db0471770dcb": "15842424-bdf8-4c05-a7a1-2be1e354b760"
+        "28e3fcbe-4fb3-4197-928c-db0471770dcb": "15842424-bdf8-4c05-a7a1-2be1e354b760",
+        "c0da6a13-36d3-42b8-90ef-d08945d1a157": "25274436-93e1-4605-8da8-0e44e2c42c9c"
       }
     },
     {
@@ -334,12 +331,12 @@
       "__version": 2,
       "Flags": 0,
       "Name": "Ship",
-      "Position": "519.549316,-1695.93933,201.164368",
+      "Position": "1120.75122,-277.218506,201.163528",
       "Rotation": "0,0.130525514,0,0.991444767",
       "Scale": "1,1,1",
       "Tags": "",
       "Enabled": true,
-      "NetworkMode": 2,
+      "NetworkMode": 1,
       "NetworkFlags": 0,
       "NetworkOrphaned": 0,
       "NetworkTransmit": true,
@@ -420,7 +417,7 @@
           "MaterialOverride": null,
           "Materials": null,
           "Model": {
-            "Id": "0bb569ca-aa5e-499f-b82f-eb393605c0b9",
+            "Id": "db5db0ff-abe7-4ceb-98f5-e84e94be7bf7",
             "Path": "models/sbox_props/watermelon/watermelon.vmdl"
           },
           "OnComponentDestroy": null,
@@ -573,7 +570,7 @@
               "MaterialOverride": null,
               "Materials": null,
               "Model": {
-                "Id": "1f4c17e3-989c-457f-9290-aa00b293c4f4",
+                "Id": "fdfc9732-b2ec-47f5-9baf-95560677d0de",
                 "Path": "materials/ac130/ac130.vmdl"
               },
               "OnComponentDestroy": null,
@@ -601,7 +598,7 @@
               "Friction": 0.22222222,
               "IsTrigger": false,
               "Model": {
-                "Id": "1f4c17e3-989c-457f-9290-aa00b293c4f4",
+                "Id": "fdfc9732-b2ec-47f5-9baf-95560677d0de",
                 "Path": "materials/ac130/ac130.vmdl"
               },
               "OnComponentDestroy": null,
@@ -718,7 +715,7 @@
               "MaterialOverride": null,
               "Materials": null,
               "Model": {
-                "Id": "0230abb6-233a-4361-84ef-716331cdb327",
+                "Id": "6a250eba-21c1-4c71-9dbc-ff76637e4248",
                 "Path": "models/sbox_props/bathtub_a/bathtub_a.vmdl"
               },
               "OnComponentDestroy": null,
@@ -746,7 +743,7 @@
               "Friction": null,
               "IsTrigger": false,
               "Model": {
-                "Id": "0230abb6-233a-4361-84ef-716331cdb327",
+                "Id": "6a250eba-21c1-4c71-9dbc-ff76637e4248",
                 "Path": "models/sbox_props/bathtub_a/bathtub_a.vmdl"
               },
               "OnComponentDestroy": null,
@@ -811,7 +808,7 @@
               "MaterialOverride": null,
               "Materials": null,
               "Model": {
-                "Id": "0230abb6-233a-4361-84ef-716331cdb327",
+                "Id": "6a250eba-21c1-4c71-9dbc-ff76637e4248",
                 "Path": "models/sbox_props/bathtub_a/bathtub_a.vmdl"
               },
               "OnComponentDestroy": null,
@@ -839,7 +836,7 @@
               "Friction": null,
               "IsTrigger": false,
               "Model": {
-                "Id": "0230abb6-233a-4361-84ef-716331cdb327",
+                "Id": "6a250eba-21c1-4c71-9dbc-ff76637e4248",
                 "Path": "models/sbox_props/bathtub_a/bathtub_a.vmdl"
               },
               "OnComponentDestroy": null,
@@ -906,7 +903,7 @@
               "MaterialOverride": null,
               "Materials": null,
               "Model": {
-                "Id": "7b841e40-cfdb-4117-8f09-9bb0cca154ef",
+                "Id": "6c8b0493-5164-4311-a3b9-04c4aac034a1",
                 "Path": "models/sbox_props/car_seat/car_seat.vmdl"
               },
               "OnComponentDestroy": null,
@@ -946,7 +943,7 @@
               "Friction": null,
               "IsTrigger": false,
               "Model": {
-                "Id": "7b841e40-cfdb-4117-8f09-9bb0cca154ef",
+                "Id": "6c8b0493-5164-4311-a3b9-04c4aac034a1",
                 "Path": "models/sbox_props/car_seat/car_seat.vmdl"
               },
               "OnComponentDestroy": null,
@@ -1316,6 +1313,54 @@
             "_type": "gameobject",
             "go": "e2a8b05c-6078-47fb-8d9d-a8ca5b427891"
           }
+        }
+      ],
+      "Children": []
+    },
+    {
+      "__guid": "6cbab8b1-ab66-415f-a8fd-83146ea397d8",
+      "__version": 2,
+      "Flags": 0,
+      "Name": "Camera",
+      "Position": "44967.4023,17866.6445,-3082.31812",
+      "Rotation": "0,0,0,1",
+      "Scale": "1,1,1",
+      "Tags": "maincamera",
+      "Enabled": true,
+      "NetworkMode": 2,
+      "NetworkFlags": 0,
+      "NetworkOrphaned": 0,
+      "NetworkTransmit": true,
+      "OwnerTransfer": 1,
+      "Components": [
+        {
+          "__type": "Sandbox.CameraComponent",
+          "__guid": "90339d52-25d6-4686-b378-128ab813be4d",
+          "__enabled": true,
+          "Flags": 0,
+          "BackgroundColor": "0.33333,0.46275,0.52157,1",
+          "ClearFlags": "All",
+          "EnablePostProcessing": true,
+          "FieldOfView": 60,
+          "FovAxis": "Horizontal",
+          "IsMainCamera": true,
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "Orthographic": false,
+          "OrthographicHeight": 1204,
+          "PostProcessAnchor": null,
+          "Priority": 1,
+          "RenderExcludeTags": "",
+          "RenderTags": "",
+          "RenderTexture": null,
+          "TargetEye": "None",
+          "Viewport": "0,0,1,1",
+          "ZFar": 10000,
+          "ZNear": 10
         }
       ],
       "Children": []

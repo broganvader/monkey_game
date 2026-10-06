@@ -3,7 +3,7 @@
     "__guid": "47def27d-fad7-4831-975d-69496b1b0647",
     "__version": 2,
     "Flags": 0,
-    "Name": "AirplanePlayer",
+    "Name": "airplaneplayer",
     "Position": "0,0,0",
     "Rotation": "0,0,0,0.99999994",
     "Scale": "1,1,1",
@@ -172,10 +172,7 @@
         "__guid": "6ff690c7-0885-43a1-a71a-a3e12847a124",
         "__enabled": true,
         "Flags": 0,
-        "Airplane": {
-          "_type": "gameobject",
-          "go": "5d5dd7b0-7a7d-4274-8685-50d65b438c63"
-        },
+        "Airplane": null,
         "GravityScale": 3,
         "GroundAngle": 45,
         "OnComponentDestroy": null,
@@ -249,10 +246,6 @@
         "OnComponentStart": null,
         "OnComponentUpdate": null,
         "PitchClamp": 90,
-        "PlaneObj": {
-          "_type": "gameobject",
-          "go": "5d5dd7b0-7a7d-4274-8685-50d65b438c63"
-        },
         "ReachLength": 130,
         "Renderer": {
           "_type": "component",
@@ -281,11 +274,11 @@
         "__type": "Sandbox.Rigidbody",
         "__guid": "2fe885cb-bf02-4af3-b316-eba944bc0440",
         "__enabled": true,
-        "Flags": 0,
+        "Flags": 1,
         "AngularDamping": 1,
         "EnableImpactDamage": true,
         "EnhancedCcd": false,
-        "Gravity": true,
+        "Gravity": false,
         "GravityScale": 1,
         "ImpactDamage": 0,
         "LinearDamping": 0.1,
@@ -298,7 +291,7 @@
           "Roll": true
         },
         "MassCenterOverride": "0,0,36",
-        "MassOverride": 541,
+        "MassOverride": 500,
         "MinImpactDamageSpeed": 500,
         "MotionEnabled": true,
         "OnComponentDestroy": null,
@@ -409,67 +402,6 @@
         "Children": []
       },
       {
-        "__guid": "a3d5e431-0e12-4b50-bdde-16ad8c22245e",
-        "__version": 2,
-        "Flags": 32768,
-        "Name": "Camera",
-        "Position": "-221.677765,-141.361893,-109.653336",
-        "Rotation": "0,0,0.0510287173,0.998697162",
-        "Scale": "1,1,1",
-        "Tags": "maincamera",
-        "Enabled": true,
-        "NetworkMode": 2,
-        "NetworkFlags": 0,
-        "NetworkOrphaned": 0,
-        "NetworkTransmit": true,
-        "OwnerTransfer": 1,
-        "Components": [
-          {
-            "__type": "Sandbox.CameraComponent",
-            "__guid": "f906b49e-661e-4a2e-9b3c-435ff5e43354",
-            "__enabled": true,
-            "Flags": 0,
-            "BackgroundColor": "0.33333,0.46275,0.52157,1",
-            "ClearFlags": "All",
-            "EnablePostProcessing": true,
-            "FieldOfView": 83.91453,
-            "FovAxis": "Horizontal",
-            "IsMainCamera": true,
-            "OnComponentDestroy": null,
-            "OnComponentDisabled": null,
-            "OnComponentEnabled": null,
-            "OnComponentFixedUpdate": null,
-            "OnComponentStart": null,
-            "OnComponentUpdate": null,
-            "Orthographic": false,
-            "OrthographicHeight": 1204,
-            "PostProcessAnchor": null,
-            "Priority": 1,
-            "RenderExcludeTags": "",
-            "RenderTags": "",
-            "RenderTexture": null,
-            "TargetEye": "None",
-            "Viewport": "0,0,1,1",
-            "ZFar": 100000,
-            "ZNear": 1
-          },
-          {
-            "__type": "Sandbox.SpeedGUI",
-            "__guid": "b7e09c48-342e-42f1-a806-d1a95fc471f1",
-            "__enabled": true,
-            "Flags": 0,
-            "MyStringValue": "Hello World!",
-            "OnComponentDestroy": null,
-            "OnComponentDisabled": null,
-            "OnComponentEnabled": null,
-            "OnComponentFixedUpdate": null,
-            "OnComponentStart": null,
-            "OnComponentUpdate": null
-          }
-        ],
-        "Children": []
-      },
-      {
         "__guid": "486ac7aa-befb-4b9a-be15-9ffb75b9e157",
         "__version": 2,
         "Flags": 1,
@@ -541,7 +473,29 @@
         ],
         "Children": []
       }
-    ]
+    ],
+    "__properties": {
+      "NetworkInterpolation": true,
+      "PhysicsMode": "Physics3D",
+      "TimeScale": 1,
+      "WantsSystemScene": true,
+      "Metadata": {},
+      "NavMesh": {
+        "Enabled": false,
+        "IncludeStaticBodies": true,
+        "IncludeKeyframedBodies": true,
+        "EditorAutoUpdate": false,
+        "AgentHeight": 64,
+        "AgentRadius": 16,
+        "AgentStepSize": 18,
+        "AgentMaxSlope": 40,
+        "ExcludedBodies": "",
+        "IncludedBodies": "",
+        "DeferGeneration": false,
+        "CustomBounds": false
+      }
+    },
+    "__variables": []
   },
   "ResourceVersion": 2,
   "ShowInMenu": false,
